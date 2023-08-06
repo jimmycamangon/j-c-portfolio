@@ -3,15 +3,15 @@ import Image from "next/image"
 import Avatar from "../../public/J-C Avatar.png"
 
 const skills = [
-    { name: "JAVA", image: "JAVA.png" },
-    { name: "C++", image: "C++.png" },
-    { name: "HTML", image: "HTML.png" },
-    { name: "CSS", image: "CSS.png" },
-    { name: "PHP", image: "PHP.png" },
-    { name: "MYSQL", image: "MYSQL.png" },
-    { name: "JAVASCRIPT", image: "JAVASCRIPT.png" },
-    { name: "TAILWIND CSS", image: "TAILWIND.png" },
-    { name: "REACT JS", image: "REACT.png" },
+    { name: "JAVA", image: "/../public/JAVA.png" },
+    { name: "C++", image: "/../public/C++.png" },
+    { name: "HTML", image: "/../public/HTML.png" },
+    { name: "CSS", image: "/../public/CSS.png" },
+    { name: "PHP", image: "/../public/PHP.png" },
+    { name: "MYSQL", image: "/../public/MYSQL.png" },
+    { name: "JAVASCRIPT", image: "/../public/JAVASCRIPT.png" },
+    { name: "TAILWIND CSS", image: "/../public/TAILWIND.png" },
+    { name: "REACT JS", image: "/../public/REACT.png" },
     
 ]
 
@@ -41,7 +41,7 @@ const AboutSection = () => {
                         {skills.map((skill, idx) => (
                             <div key={idx} className="pt-2">
                                 <Image
-                                    src={`/../public/${skill.image}`}
+                                    src={skill.image}
                                     alt={`${skill.name} logo`}
                                     width={90}
                                     height={90}

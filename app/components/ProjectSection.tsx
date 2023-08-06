@@ -25,7 +25,7 @@ const ProjectsSection = () => {
                 <div className={`flex flex-col ${fadeInAnimation} animation-delay-2 md:flex-row md:space-x-12`}>
                   <div className="md:w-1/2 flex items-center">
                     <Image
-                      src={`/../public/${project.image}`}
+                      src={project.image}
                       alt=""
                       width={1000}
                       height={1000}
