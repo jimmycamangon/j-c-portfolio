@@ -1,6 +1,6 @@
 # About Me
 
-Hello! I'm [Your Name], an aspiring Software Engineer with a passion for creating innovative and user-friendly web applications. I'm dedicated to continuous learning and strive to contribute to the world of technology through my coding skills. Below, you'll find an overview of my skillset and a bit about me.
+Hello! I'm Jimmy Camangon, an aspiring Software Engineer with a passion for creating innovative and user-friendly web applications. I'm dedicated to continuous learning and strive to contribute to the world of technology through my coding skills. Below, you'll find an overview of my skillset and a bit about me.
 
 ## Skills
 
