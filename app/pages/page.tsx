@@ -2,11 +2,10 @@
 
 import { usePathname, useSearchParams } from "next/navigation";
 import React from "react";
-import projects from "../data/projects";
+import projects from "../components/projects";
 import Image from "next/image";
 
 const DisplayProject: React.FC = () => {
-    const pathname = usePathname();
     const searchParams = useSearchParams();
 
     // Get the "id" parameter from the searchParams object
@@ -28,8 +27,8 @@ const DisplayProject: React.FC = () => {
                     {project.screenshots.map((screenshot, index) => (
                         <div key={index} className="screenshot-container">
                             <Image
-                                src={screenshot}
-                                alt={`Screenshot ${index + 1}`}
+                                src={`/../public/${screenshot}`}
+                                alt={`Screenshot`}
                                 width={300}
                                 height={300}
                                 style={{ width: "auto", height: "auto" }}

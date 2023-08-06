@@ -3,8 +3,8 @@ import Image from "next/image"
 import Link from "next/link"
 import SlideUp from "./SlideUp"
 import { FaArrowRight } from 'react-icons/fa';
-import { Project } from '../data/type';
-import projects from "../data/projects"
+import { Project } from "./type";
+import projects from "./projects";
 
 const ProjectsSection = () => {
   return (
@@ -25,7 +25,7 @@ const ProjectsSection = () => {
                 <div className={`flex flex-col ${fadeInAnimation} animation-delay-2 md:flex-row md:space-x-12`}>
                   <div className="md:w-1/2 flex items-center">
                     <Image
-                      src={project.image}
+                      src={`/../public/${project.image}`}
                       alt=""
                       width={1000}
                       height={1000}
