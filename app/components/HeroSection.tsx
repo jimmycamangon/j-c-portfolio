@@ -12,7 +12,7 @@ const HeroSection = () => {
             <div className="flex flex-col text-center items-center justify-center animate-fadeIn animation-delay-2 my-10 sm:py-32 md:flex-row md:space-x-4 md:text-left">
                 <div className="md:mt-2 md:w-3/5 space-y-5">
                     <h1 className="text-4xl font-bold mt-6 md:mt-0 md:text-6xl text-center">👋 Hi, I’m <span className='text-primaryColor font-bold dark:text-secondaryColor'>Jimmy!</span></h1>
-                    <p className='text-md w-full md:w-full'>
+                    <p className='text-md w-full md:w-full '>
                         I am an aspiring <span className='text-primaryColor font-semibold dark:text-secondaryColor'>Software Engineer</span> who is passionate about coding, innovation, and building web applications.
                     </p>
                     <Button buttonText='Projects' />

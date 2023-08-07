@@ -37,9 +37,9 @@ const AboutSection = () => {
                     Basic Skills
                 </h1>
                 <div className="space-y-5">
-                    <div className="space-x-2 flex md:flex-row flex-wrap justify-center items-center">
+                    <div className="flex md:flex-row flex-wrap justify-center items-center">
                         {skills.map((skill, idx) => (
-                            <div key={idx} className="pt-2">
+                            <div key={idx} className="p-2 flex justify-center flex-col items-center">
                                 <Image
                                     src={skill.image}
                                     alt={`${skill.name} logo`}
