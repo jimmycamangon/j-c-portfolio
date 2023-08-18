@@ -18,7 +18,7 @@ const contacts = [
     {
         name: "LINKED IN",
         icon: <BiLogoLinkedinSquare />,
-        desc: "https://www.linkedin.com/in/jimmy-c-89b41918b/",
+        desc: "https://www.linkedin.com/in/jimmy-jr-c-89b41918b/",
     },
     {
         name: "GITHUB",
