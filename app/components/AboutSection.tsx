@@ -34,7 +34,7 @@ const AboutSection = () => {
                     </div>
                 </div>
                 <h1 className="text-center pt-10 font-bold text-3xl text-primaryColor dark:text-secondaryColor md:p-6 p-8">
-                    Basic Skills
+                    Basic Tech Skills
                 </h1>
                 <div className="space-y-5">
                     <div className="flex md:flex-row flex-wrap justify-center items-center">
