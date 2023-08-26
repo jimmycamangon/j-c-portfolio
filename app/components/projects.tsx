@@ -140,6 +140,7 @@ const projects: Project[] = [
             "MYSQL",
             "HTML",
             "CSS",
+            "BOOTSTRAP",
             "JAVASCRIPT"
         ],
         id: 4,
