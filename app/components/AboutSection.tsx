@@ -31,7 +31,7 @@ const AboutSection = () => {
                     </div>
 
                     <div className="text-center md:w-5/6 md:text-left flex items-center">
-                        Hello, I`m Jimmy Camangon, a dedicated Software Engineer with a Bachelor`s degree in Information and Technology. My programming journey began during Senior High School when I chose the ICT track, igniting my passion for coding. This experience has driven me to pursue a rewarding career in software engineering.
+                        Hello, I`m Jimmy Camangon, a dedicated Software Developer with a Bachelor`s degree in Information and Technology. My programming journey began during Senior High School when I chose the ICT track, igniting my passion for coding. This experience has driven me to pursue a rewarding career in software engineering.
                     </div>
                 </div>
                 <h1 className="text-center pt-10 font-bold text-3xl text-primaryColor dark:text-secondaryColor md:p-6 p-8">
