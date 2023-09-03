@@ -32,6 +32,7 @@ const projects: Project[] = [
         ],
         technologies: [
             "SOCKET IO",
+            "EXPRESS JS",
             "JQUERY",
             "PHP",
             "MYSQL",
@@ -99,6 +100,7 @@ const projects: Project[] = [
         ],
         technologies: [
             "SOCKET IO",
+            "EXPRESS JS",
             "JQUERY",
             "PHP",
             "MYSQL",
