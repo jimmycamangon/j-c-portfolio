@@ -13,7 +13,7 @@ const HeroSection = () => {
                 <div className="md:mt-2 md:w-3/5 space-y-5">
                     <h1 className="text-4xl font-bold mt-6 md:mt-0 md:text-6xl text-center">👋 Hi, I’m <span className='text-primaryColor font-bold dark:text-secondaryColor'>Jimmy!</span></h1>
                     <p className='text-md w-full md:w-full '>
-                        I am an aspiring <span className='text-primaryColor font-semibold dark:text-secondaryColor'>Software Engineer</span> who is passionate about coding, innovation, and building web applications.
+                        I am a <span className='text-primaryColor font-semibold dark:text-secondaryColor'>Software Developer</span> who is passionate about coding, innovation, and building web applications.
                     </p>
                     <Button buttonText='Projects' />
                     <div className='w-full flex justify-center text-3xl py-5'>
