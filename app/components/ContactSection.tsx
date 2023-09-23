@@ -16,11 +16,6 @@ const contacts = [
         desc: "+639365220532",
     },
     {
-        name: "LINKED IN",
-        icon: <BiLogoLinkedinSquare />,
-        desc: "https://www.linkedin.com/in/jimmy-jr-c-89b41918b/",
-    },
-    {
         name: "GITHUB",
         icon: <BiLogoGithub />,
         desc: "https://github.com/jimmycamangon",
