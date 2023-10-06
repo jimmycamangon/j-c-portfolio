@@ -10,7 +10,7 @@ Hello! I'm Jimmy Camangon, a Software Developer with a passion for creating inno
 - HTML5 (beginner)
 - CSS3 (beginner)
 - PHP (beginner)
-- VB.NET (beginner)
+- C# (beginner)
 
 
 ### Front-End Development
