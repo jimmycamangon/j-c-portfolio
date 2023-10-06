@@ -12,7 +12,7 @@ const skills = [
     { name: "JAVASCRIPT", image: "JAVASCRIPT.png" },
     { name: "TAILWIND CSS", image: "TAILWIND.png" },
     { name: "REACT JS", image: "REACT.png" },
-    { name: "VB.NET", image: "VB.NET.png" },
+    { name: "C#", image: "C#.png" },
     
 ]
 
