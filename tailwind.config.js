@@ -16,7 +16,9 @@ module.exports = {
       secondaryColor: '#ADD8E6',
       grayColor: "#6b7280",
       textGray: "#6b7280",
+      widthGray: "#D3D3D3",
       textDark: "#000000",
+      whiteColor: "#fff",
     }
   },
   plugins: [],
