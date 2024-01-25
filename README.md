@@ -1,6 +1,6 @@
 # About Me
 
-Hello! I'm Jimmy Camangon, a Software Developer with a passion for creating innovative and user-friendly web applications. I'm dedicated to continuous learning and strive to contribute to the world of technology through my coding skills. Below, you'll find an overview of my skillset and a bit about me.
+Hello! I'm Jimmy Camangon, a Programmer with a passion for creating innovative and user-friendly web applications. I'm dedicated to continuous learning and strive to contribute to the world of technology through my coding skills. Below, you'll find an overview of my skillset and a bit about me.
 
 ## Skills
 
@@ -43,4 +43,4 @@ Feel free to reach out to me via [LinkedIn](https://www.linkedin.com/in/jimmy-c-
 Thank you for taking the time to learn a bit about me and my journey in the world of software engineering!
 
 Best regards,
-[JimJim]
+[Jim]
