@@ -13,7 +13,7 @@ const skills = [
     { name: "TAILWIND CSS", image: "TAILWIND.png" },
     { name: "REACT JS", image: "REACT.png" },
     { name: "C#", image: "C_LOGO.png" },
-    { name: "NETCore", image: "NET_CORE.png" },
+    { name: ".NETCore", image: "NET_CORE.png" },
     
 ]
 
