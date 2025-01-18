@@ -22,7 +22,7 @@ export default function Home() {
           <ProjectsSection />
           <ContactSection />
           <Footer />
-          <ScrollToTopButton /> {/* Include the new component */}
+          <ScrollToTopButton /> 
         </main>
       </ThemeProvider>
     </div>

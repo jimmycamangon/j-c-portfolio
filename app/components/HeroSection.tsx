@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image'
-import Hero from '../../public/hero-image.png'
+import Hero from '../../public/hero-image-new.png'
 import Button from './Button'
 import { Link } from 'react-scroll';
 import { FaArrowDown } from 'react-icons/fa';
