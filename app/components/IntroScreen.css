@@ -1,0 +1,52 @@
+.split-text {
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.letter {
+    display: inline-block;
+    transform: translateY(100%);
+    animation: 
+        slideIn 0.5s ease forwards,
+        slideOut 0.5s ease forwards;
+    animation-delay: 
+        calc(var(--delay, 0) * 0.1s),
+        calc(var(--delay, 0) * 0.1s + 2s); /* Slide out after 2s delay from slide-in */
+}
+
+/* Your existing delay configuration */
+.letter:nth-child(1) { --delay: 1; }
+.letter:nth-child(2) { --delay: 1; }
+.letter:nth-child(3) { --delay: 1; }
+.letter:nth-child(4) { --delay: 1; }
+.letter:nth-child(5) { --delay: 1; }
+.letter:nth-child(6) { --delay: 1; }
+.letter:nth-child(7) { --delay: 3; }
+.letter:nth-child(8) { --delay: 3; }
+.letter:nth-child(9) { --delay: 3; }
+.letter:nth-child(10) { --delay: 3; }
+.letter:nth-child(11) { --delay: 3; }
+.letter:nth-child(12) { --delay: 3; }
+.letter:nth-child(13) { --delay: 3; }
+.letter:nth-child(14) { --delay: 3; }
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}

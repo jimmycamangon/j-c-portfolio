@@ -1,6 +1,6 @@
 "use client"
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import projects from "../components/projects";
 import Image from "next/image";
 import Footer from "../components/Footer";
@@ -15,6 +15,7 @@ const DisplayProject: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedImage, setSelectedImage] = useState("");
     const searchParams = useSearchParams();
+    const router = useRouter(); // Initialize useRouter
 
     // Get the "id" parameter from the searchParams object
     const id = searchParams.get("id");
@@ -30,17 +31,18 @@ const DisplayProject: React.FC = () => {
         return (
             <div>
                 <div className="w-full mx-auto px-5 p-5 ">
-                    <Link
-                        href={{ pathname: "../" }}
+                    <button
+                        onClick={() => router.back()} // Use router.back() to go to the previous page
                         className="flex space-x-2 justify-end items-center transition-transform hover:-translate-x-3"
                     >
-                        <FaArrowLeft className="text-primaryColor dark:text-secondaryColor" /> <h1 className="text-primaryColor dark:text-secondaryColor underline"> Back</h1>
-                    </Link>
-
+                        <FaArrowLeft className="text-primaryColor dark:text-secondaryColor" />
+                        <h1 className="text-primaryColor dark:text-secondaryColor underline">Back</h1>
+                    </button>
                 </div>
                 <div className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl overflow-x-hidden dark:bg-lightTheme dark:text-textDark p-5 m-6 rounded-lg">
                     <h2 className="font-bold text-center text-3xl py-2 text-primaryColor">{project.name}</h2>
-                    <div className="border-b border-gray-400 pb-3 text-sm py-10"><span className="font-bold text-primaryColor text-lg [y">Description:</span>
+                    <div className="border-b border-gray-400 pb-3 text-sm py-10">
+                        <span className="font-bold text-primaryColor text-lg">Description:</span>
                         <br />
                         <p className="indent-8 py-5">{project.obj}</p>
                     </div>
@@ -64,7 +66,6 @@ const DisplayProject: React.FC = () => {
                 <h1 className="text-center font-bold text-lg text-primaryColor dark:text-secondaryColor">Screenshots</h1>
                 <div className="flex flex-wrap flex-row mx-auto max-w-7xl px-4 md:max-w-10xl overflow-x-hidden justify-center items-center">
                     {project.screenshots.map((screenshot, index) => (
-                        // Inside your project.screenshots.map
                         <div key={index} className="screenshot-container p-2 py-10">
                             <Image
                                 src={screenshot}
@@ -79,7 +80,6 @@ const DisplayProject: React.FC = () => {
                                 }}
                             />
                         </div>
-
                     ))}
                 </div>
 
@@ -101,36 +101,12 @@ const DisplayProject: React.FC = () => {
                                 height={800}
                                 className="rounded-md"
                             />
-                            <div className="flex justify-center py-5">
-                                <button
-                                    onClick={() => {
-                                        const currentIndex = project.screenshots.findIndex(screenshot => screenshot === selectedImage);
-                                        const prevIndex = (currentIndex - 1 + project.screenshots.length) % project.screenshots.length;
-                                        setSelectedImage(project.screenshots[prevIndex]);
-                                    }}
-                                    className="text-white text-4xl text-lightTheme p-2 rounded-full hover:bg-opacity-70 transition"
-                                >
-                                    <AiFillCaretLeft />
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        const currentIndex = project.screenshots.findIndex(screenshot => screenshot === selectedImage);
-                                        const nextIndex = (currentIndex + 1) % project.screenshots.length;
-                                        setSelectedImage(project.screenshots[nextIndex]);
-                                    }}
-                                    className="ml-4 text-white text-4xl text-lightTheme p-2 rounded-full hover:bg-opacity-70 transition"
-                                >
-                                    <AiFillCaretRight />
-                                </button>
-                            </div>
                         </div>
                     </div>
                 )}
 
-
                 <Footer />
             </div>
-
         );
     } else {
         return <div>Project not found</div>;
