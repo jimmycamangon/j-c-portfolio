@@ -1,68 +1,65 @@
-import React from 'react'
-import { BiLogoGmail, BiSolidPhone, BiLogoLinkedinSquare, BiLogoGithub } from 'react-icons/bi'
-import Image from 'next/image'
-import Link from 'next/link'
-
-
-const contacts = [
-    {
-        name: "GMAIL",
-        icon: <BiLogoGmail />,
-        desc: "jimmycamangon7@gmail.com",
-    },
-    {
-        name: "PHONE",
-        icon: <BiSolidPhone />,
-        desc: "+639365220532",
-    },
-    {
-        name: "GITHUB",
-        icon: <BiLogoGithub />,
-        desc: "https://github.com/jimmycamangon",
-    },
-]
-
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import {
+  BiLogoGmail,
+  BiLogoLinkedinSquare,
+  BiLogoGithub,
+} from "react-icons/bi";
+import Link from "next/link";
 
 const ContactSection = () => {
-    return (
-        <section id='contact'>
-            <div className='pb-12 md:pb-48'>
-                <h1 className="my-10 text-center font-bold text-3xl text-primaryColor dark:text-secondaryColor">
-                    Contact
-                </h1>
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  return (
+    <motion.section
+      id="contact"
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }} 
+      animate={isInView ? { opacity: 1, y: 0 } : {}} 
+      transition={{ duration: 0.5 }} 
+      className="pb-12 md:pb-48 text-center"
+    >
+      <section id="contact" className="py-12 md:py-24">
+        <h1 className="text-3xl text-left font-bold text-primaryColor dark:text-secondaryColor mb-4">
+          Contact
+        </h1>
 
-                <div className='flex flex-wrap md:flex-row  justify-center items-center'>
-                    {contacts.map((contact, idx) => {
-                        return (
-                            <div key={idx}>
-                                <div className='w-52 text-center space-y-9'>
-                                    <div className='flex justify-center'>
-                                        <div className='w-24 h-24 text-6xl text-primaryColor dark:text-darkTheme rounded-full dark:bg-lightTheme flex justify-center items-center shadow-xl'>{contact.icon}</div>
-                                    </div>
+        <p className="text-lg text-left dark:text-whiteColor mb-2">
+          Collab? Sure. Need code? Done.
+        </p>
+        <p className="text-left text-gray-500 dark:text-gray-400 mb-6">
+          I’m all in — coffee helps.
+        </p>
 
-                                    <div className='flex flex-col justify-center items-center space-y-5 pb-6'>
-                                        <h1 className='font-semibold'>{contact.name}</h1>
-                                        {contact.name === "PHONE" || contact.name === "GMAIL" ? (
-                                            <div className='w-52 dark:text-secondaryColor'>
-                                                <p>{contact.desc}</p>
-                                            </div>
-                                        ) : (
-                                            <Link href={contact.desc}>
-                                                <div className='underline text-primaryColor w-52 overflow-hidden dark:text-secondaryColor'>
-                                                    <p className='truncate '>{contact.desc}</p>
-                                                </div>
-                                            </Link>
+        <div className="text-left space-y-4">
+          <p className="flex items-start justify-start gap-2 text-sm dark:text-secondaryColor">
+            <BiLogoGmail className="text-xl" />
+            hi@jimmycamangon121801@gmail.com
+          </p>
 
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
-        </section>
-    )
-}
+          <div className="flex items-start justify-start gap-4 text-primaryColor dark:text-secondaryColor text-sm">
+            <Link
+              href="https://github.com/jimmycamangon"
+              target="_blank"
+              className="hover:underline flex items-center gap-1"
+            >
+              <BiLogoGithub className="text-xl" />
+              GitHub
+            </Link>
+            <span>|</span>
+            <Link
+              href="https://www.linkedin.com/in/camangon-jimmy-jr-b-b88003294/"
+              target="_blank"
+              className="hover:underline flex items-start gap-1"
+            >
+              <BiLogoLinkedinSquare className="text-xl" />
+              LinkedIn
+            </Link>
+          </div>
+        </div>
+      </section>
+    </motion.section>
+  );
+};
 
-export default ContactSection
+export default ContactSection;

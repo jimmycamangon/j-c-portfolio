@@ -14,7 +14,7 @@
         slideOut 0.5s ease forwards;
     animation-delay: 
         calc(var(--delay, 0) * 0.1s),
-        calc(var(--delay, 0) * 0.1s + 2s); /* Slide out after 2s delay from slide-in */
+        calc(var(--delay, 0) * 0.1s + 2s); 
 }
 
 /* Your existing delay configuration */

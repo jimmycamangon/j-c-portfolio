@@ -34,9 +34,9 @@ export default function Home() {
                     <Navbar />
                     <main className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl overflow-x-hidden">
                         <HeroSection />
-                        <AboutSection />
-                        <ExperienceSection />
                         <ProjectsSection />
+                        <ExperienceSection />
+                        <AboutSection />
                         <ContactSection />
                         <Footer />
                         <ScrollToTopButton />

@@ -9,18 +9,18 @@ const IntroScreen = ({ onFinish }: { onFinish: () => void }) => {
     const { theme } = useTheme();
     const name = "Jimmy Camangon";
 
-    // Total animation time (adjust based on your CSS animation durations)
-    const slideInDuration = 800; // 3 seconds for slide-in
-    const slideOutDuration = 800; // 2 seconds for slide-out
+
+    const slideInDuration = 800; 
+    const slideOutDuration = 800; 
     const totalAnimationTime = slideInDuration + slideOutDuration;
 
     useEffect(() => {
-        // Start the fade-out effect after the slide-in animation completes
+
         const fadeOutTimer = setTimeout(() => {
             setStartFadeOut(true);
         }, slideInDuration);
 
-        // Trigger the onFinish callback after the slide-out animation completes
+
         const finishTimer = setTimeout(() => {
             onFinish();
         }, totalAnimationTime);
@@ -37,8 +37,8 @@ const IntroScreen = ({ onFinish }: { onFinish: () => void }) => {
                 startFadeOut ? "opacity-0" : "opacity-100"
             } ${
                 theme === "dark"
-                    ? "bg-black text-white"
-                    : "bg-white text-black"
+                    ? "bg-darkTheme text-white"
+                    : "bg-lightTheme text-black"
             }`}
         >
             <h1 className="split-text">
