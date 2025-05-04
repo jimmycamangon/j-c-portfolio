@@ -1,10 +1,8 @@
-"use client";
-
+// filepath: d:\JimFiles\j-c-portfolio\j-c-portfolio\app\layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import ThemeProviderWrapper from './components/ThemeProviderWrapper';
-import { useEffect } from 'react';
+import ClientWrapper from './components/ClientWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,33 +12,16 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    useEffect(() => {
-        const ripple = document.getElementById("ripple");
-
-        const handleMouseMove = (e: MouseEvent) => {
-            const { clientX: x, clientY: y } = e;
-
-            if (ripple) {
-                ripple.style.left = `${x}px`;
-                ripple.style.top = `${y}px`;
-            }
-        };
-
-        document.addEventListener("mousemove", handleMouseMove);
-
-        return () => {
-            document.removeEventListener("mousemove", handleMouseMove);
-        };
-    }, []);
-
     return (
         <html lang="en">
+            <head>
+                {/* Favicon */}
+                <link rel="icon" href="/J-C-LOGO.png" />
+            </head>
             <body>
-                <ThemeProviderWrapper>
-                    {/* Ripple Cursor */}
-                    <div id="ripple"></div>
+                <ClientWrapper>
                     {children}
-                </ThemeProviderWrapper>
+                </ClientWrapper>
             </body>
         </html>
     );
