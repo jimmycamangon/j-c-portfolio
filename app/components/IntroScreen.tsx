@@ -41,7 +41,7 @@ const IntroScreen = ({ onFinish }: { onFinish: () => void }) => {
                     : "bg-lightTheme text-black"
             }`}
         >
-            <h1 className="split-text">
+            <h1 className="split-text ">
                 {name.split("").map((letter, index) => (
                     <span key={index} className={`letter`}>
                         {letter === " " ? "\u00A0" : letter}

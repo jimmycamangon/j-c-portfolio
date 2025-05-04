@@ -1,9 +1,11 @@
 .split-text {
     display: inline-block;
-    font-size: 3rem;
+    font-size: 6rem;
     font-weight: bold;
     overflow: hidden;
     white-space: nowrap;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+    color: inherit; /* Inherit text color from theme */
 }
 
 .letter {
@@ -17,7 +19,6 @@
         calc(var(--delay, 0) * 0.1s + 2s); 
 }
 
-/* Your existing delay configuration */
 .letter:nth-child(1) { --delay: 1; }
 .letter:nth-child(2) { --delay: 1; }
 .letter:nth-child(3) { --delay: 1; }
