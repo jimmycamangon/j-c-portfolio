@@ -1,22 +1,32 @@
 .split-text {
     display: inline-block;
-    font-size: 6rem;
+    font-size: 6rem; 
     font-weight: bold;
     overflow: hidden;
     white-space: nowrap;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow effect */
-    color: inherit; /* Inherit text color from theme */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+    color: inherit; 
+    text-align: center;
+}
+
+
+@media (max-width: 768px) {
+    .split-text {
+        font-size: 3rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .split-text {
+        font-size: 2.5rem; 
+    }
 }
 
 .letter {
     display: inline-block;
     transform: translateY(100%);
-    animation: 
-        slideIn 0.5s ease forwards,
-        slideOut 0.5s ease forwards;
-    animation-delay: 
-        calc(var(--delay, 0) * 0.1s),
-        calc(var(--delay, 0) * 0.1s + 2s); 
+    animation: slideIn 0.5s ease forwards; 
+    animation-delay: calc(var(--delay, 0) * 0.1s);
 }
 
 .letter:nth-child(1) { --delay: 1; }
@@ -40,14 +50,5 @@
     }
     100% {
         transform: translateY(0);
-    }
-}
-
-@keyframes slideOut {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-100%);
     }
 }

@@ -17,16 +17,16 @@ const NAV_ITEMS: Array<NavItem> = [
         page: "home",
     },
     {
-        label: "About",
-        page: "about",
+        label: "Projects",
+        page: "projects",
     },
     {
         label: "Experience",
         page: "experience",
     },
     {
-        label: "Projects",
-        page: "projects",
+        label: "About",
+        page: "about",
     },
     {
         label: "Contact",
