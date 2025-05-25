@@ -5,7 +5,7 @@ const projects: Project[] = [
         name: "DACCS (Digital Application of Certification and Clearance System)",
         description:
             "Simplify and digitize the process of requesting and obtaining essential certifications and clearances for residents of Barangay Caingin.",
-        image: "DACCS.JPG",
+        image: "/DACCS.JPG",
         obj: "Addressing the ongoing difficulties experienced by the Caingin barangay community, a proactive team of students, led by myself as the programmer, has skillfully crafted the Digital Application for Clearance and Certification System (DACCS). This innovative platform equips the residents of Barangay Caingin with the ability to effortlessly solicit vital certifications and clearances through an online interface, effectively simplifying what was previously a time-intensive and arduous procedure.        ",
         key_features: [
             "Begin the process by creating a secure and personalized user account on our platform. Provide essential information and create login credentials for easy access.",
@@ -18,17 +18,17 @@ const projects: Project[] = [
             "Once your request is verified and processed, you will be notified that your requested document is ready for collection. At this point, you can proceed to the Barangay Hall to claim your document."
         ],
         screenshots: [
-            "DACCS_Admin Dashboard.JPG",
-            "DACCS_Claiming List.JPG",
-            "DACCS_Contact.JPG",
-            "DACCS_Feature.JPG",
-            "DACCS_Form Page.JPG",
-            "DACCS_Information.JPG",
-            "DACCS_LandPage.JPG",
-            "DACCS_Login.JPG",
-            "DACCS_Pending List.JPG",
-            "DACCS_Processing List.JPG",
-            "DACCS_User Home Page.JPG"
+            "/DACCS_Admin Dashboard.JPG",
+            "/DACCS_Claiming List.JPG",
+            "/DACCS_Contact.JPG",
+            "/DACCS_Feature.JPG",
+            "/DACCS_Form Page.JPG",
+            "/DACCS_Information.JPG",
+            "/DACCS_LandPage.JPG",
+            "/DACCS_Login.JPG",
+            "/DACCS_Pending List.JPG",
+            "/DACCS_Processing List.JPG",
+            "/DACCS_User Home Page.JPG"
         ],
         technologies: [
             "SOCKET IO",
@@ -47,7 +47,7 @@ const projects: Project[] = [
     {
         name: "QRS (Queue Reservation System)",
         description: "Streamline and optimize the queuing experience for students at St. Vincent School's registration and cashier offices through an online reservation system.",
-        image: "QRS.JPG",
+        image: "/QRS.JPG",
         obj: "In our quest for an improved campus experience, we introduce the Queue Reservation System (QRS). During our On-the-Job Training, my team and I, under my programming leadership, identified a pressing concern at St. Vincent School: students enduring queues at registration and cashier offices. To address this, we innovated a solution—an online reservation system allowing students to secure their place in line seamlessly.",
         key_features: [
             "Begin by registering an account as a student. Provide accurate details and create your secure login credentials to ensure a personalized and protected experience.",
@@ -60,13 +60,13 @@ const projects: Project[] = [
             "Once your turn arrives, proceed with your transaction. After successful completion, your request is considered fulfilled and the process is marked as completed."
         ],
         screenshots: [
-            "QRS_In Queue Page.JPG",
-            "QRS_HomePage.JPG",
-            "QRS_Login.JPG",
-            "QRS_Contact.JPG",
-            "QRS_Modal.JPG",
-            "QRS_Staff Page.JPG",
-            "QRS_Queue Page.JPG"
+            "/QRS_In Queue Page.JPG",
+            "/QRS_HomePage.JPG",
+            "/QRS_Login.JPG",
+            "/QRS_Contact.JPG",
+            "/QRS_Modal.JPG",
+            "/QRS_Staff Page.JPG",
+            "/QRS_Queue Page.JPG"
         ],
         technologies: [
             "PHP",
@@ -81,7 +81,7 @@ const projects: Project[] = [
     {
         name: "AMS (Attendance Monitoring System)",
         description: "Enhance attendance tracking and management for grades 2 and 3 students North Marinig Elementary School.",
-        image: "AMS.JPG",
+        image: "/AMS.JPG",
         obj: "My involvement in the development of the Attendance Monitoring System (AMS) was driven by a unique opportunity. Collaborating with fellow students, we undertook a project for a school client aiming to enhance and expedite attendance tracking for children in grades 2 and 3.",
         key_features: [
             "Initiate the process by registering an account as a parent. Provide accurate details and establish secure login credentials to ensure a personalized and protected experience.",
@@ -92,11 +92,11 @@ const projects: Project[] = [
             "Following each QR code scan, an SMS notification is automatically sent to the parent associated with the child's LRN. This notification provides details on the student's time in and time out, allowing the parent to stay informed about their child's attendance."
         ],
         screenshots: [
-            "AMS_Admin Page.JPG",
-            "AMS_History.JPG",
-            "AMS_Parent Page.JPG",
-            "AMS.JPG",
-            "AMS_Dashboard.JPG"
+            "/AMS_Admin Page.JPG",
+            "/AMS_History.JPG",
+            "/AMS_Parent Page.JPG",
+            "/AMS.JPG",
+            "/AMS_Dashboard.JPG"
         ],
         technologies: [
             "SOCKET IO",
@@ -116,7 +116,7 @@ const projects: Project[] = [
     {
         name: "Voting System",
         description: "Revolutionize the election process at AICS by enabling students to cast their votes online for various positions and initiatives, ensuring transparency and efficiency.",
-        image: "Voting_System.JPG",
+        image: "/Voting_System.JPG",
         obj: "In response to the imperative need for an advanced voting solution at the Asian Institute of Computer Studies (AICS) during our senior high school years, we embarked on a transformative thesis project. This Voting System replaces the archaic manual voting process that was previously prevalent within the school. Our innovation has successfully transitioned essential processes, such as electing EEP officers, to an efficient and accessible online platform, facilitating student participation in school governance.",
         key_features: [
             "Commence by creating a student account in person at the school's office. Provide accurate information and establish a secure login credential to ensure a personalized and protected experience.",
@@ -126,15 +126,15 @@ const projects: Project[] = [
             "After submitting the vote, the system instantly records the vote directly into the admin's dashboard or the school's dedicated Election Database. This ensures the accuracy and integrity of the election process."
         ],
         screenshots: [
-            "VS_Admin Dashboard.JPG",
-            "VS_Admin_Profile.JPG",
-            "VS_Candidates Page.JPG",
-            "VS_Candidates Registration Page.JPG",
-            "VS_Positions Page.JPG",
-            "VS_Voters Page.JPG",
-            "VS_Voters Page 2.JPG",
-            "VS_Votes Page.JPG",
-            "VS_Voting Tally.JPG"
+            "/VS_Admin Dashboard.JPG",
+            "/VS_Admin_Profile.JPG",
+            "/VS_Candidates Page.JPG",
+            "/VS_Candidates Registration Page.JPG",
+            "/VS_Positions Page.JPG",
+            "/VS_Voters Page.JPG",
+            "/VS_Voters Page 2.JPG",
+            "/VS_Votes Page.JPG",
+            "/VS_Voting Tally.JPG"
         ],
         technologies: [
             "JQUERY",

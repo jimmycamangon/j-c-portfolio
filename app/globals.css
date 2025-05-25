@@ -2,12 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent flash of unstyled content */
+html {
+  visibility: hidden;
+}
+
+.loaded {
+  visibility: visible;
+  animation: fadeIn 0.3s ease-in forwards;
+}
+
 @layer base {
+  :root {
+    --gradient-overlay: radial-gradient(circle, #f5f7fa, #c3cfe2);
+  }
+
+  [data-theme="dark"] {
+    --gradient-overlay: radial-gradient(circle, #10111A, #000000);
+  }
+
   body {
     @apply dark:bg-darkTheme bg-lightTheme p-0;
     font-family: "Satoshi", "Inter", sans-serif;
   }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 #ripple {
   position: fixed;
   width: 50px;

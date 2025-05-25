@@ -1,22 +1,32 @@
 .split-text {
     display: inline-block;
-    font-size: 6rem;
+    font-size: 6rem; /* Default font size for larger screens */
     font-weight: bold;
     overflow: hidden;
     white-space: nowrap;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow effect */
     color: inherit; /* Inherit text color from theme */
+    text-align: center;
+}
+
+/* Adjust font size for smaller screens */
+@media (max-width: 768px) {
+    .split-text {
+        font-size: 3rem; /* Smaller font size for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .split-text {
+        font-size: 2.5rem; /* Even smaller font size for mobile phones */
+    }
 }
 
 .letter {
     display: inline-block;
     transform: translateY(100%);
-    animation: 
-        slideIn 0.5s ease forwards,
-        slideOut 0.5s ease forwards;
-    animation-delay: 
-        calc(var(--delay, 0) * 0.1s),
-        calc(var(--delay, 0) * 0.1s + 2s); 
+    animation: slideIn 0.5s ease forwards; /* Only slide-in animation */
+    animation-delay: calc(var(--delay, 0) * 0.1s);
 }
 
 .letter:nth-child(1) { --delay: 1; }
@@ -43,11 +53,63 @@
     }
 }
 
-@keyframes slideOut {
-    0% {
-        transform: translateY(0);
+.intro-container {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.intro-container.fadeIn {
+    opacity: 1;
+}
+
+.intro-text {
+    font-size: 6rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive font sizes */
+@media (max-width: 768px) {
+    .intro-text {
+        font-size: 3rem;
     }
-    100% {
-        transform: translateY(-100%);
+}
+
+@media (max-width: 480px) {
+    .intro-text {
+        font-size: 2.5rem;
+    }
+}
+
+.intro-background {
+    transition: background-image 1s ease-in-out;
+}
+
+.intro-background.dark {
+    background-color: #1a1a1a;
+    animation: fadeToGradientDark 1s ease-in-out forwards;
+}
+
+.intro-background.light {
+    background-color: white;
+    animation: fadeToGradientLight 1s ease-in-out forwards;
+}
+
+@keyframes fadeToGradientDark {
+    from {
+        background-image: none;
+    }
+    to {
+        background-image: radial-gradient(circle, #10111A, #000000);
+    }
+}
+
+@keyframes fadeToGradientLight {
+    from {
+        background-image: none;
+    }
+    to {
+        background-image: radial-gradient(circle, #f5f7fa, #c3cfe2);
     }
 }

@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en">
             <head>
                 {/* Favicon */}
-                <link rel="icon" href="/J-C-LOGO.png" />
+                <link rel="icon" href="/j-c-logo-v2.png" />
             </head>
             <body>
                 <ClientWrapper>

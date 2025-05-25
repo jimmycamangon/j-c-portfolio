@@ -8,6 +8,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        'nav': '1300px',
+      },
       fontFamily: {
         sans: ['Satoshi', 'Inter', 'sans-serif'], 
       },
@@ -18,7 +21,7 @@ module.exports = {
     },
     colors: {
       primaryColor: '#0077B6',
-      secondaryColor: '#ADD8E6',
+      secondaryColor: '#ecebeb',
       grayColor: "#6b7280",
       textGray: "#6b7280",
       widthGray: "#D3D3D3",

@@ -5,48 +5,35 @@ import { useTheme } from "next-themes";
 import "./IntroScreen.css";
 
 const IntroScreen = ({ onFinish }: { onFinish: () => void }) => {
-    const [startFadeOut, setStartFadeOut] = useState(false);
-    const { theme } = useTheme();
+    const [fadeState, setFadeState] = useState<'initial' | 'fadeIn' | 'fadeOut'>('initial');
+    const { theme, systemTheme } = useTheme();
+    const currentTheme = theme === "system" ? systemTheme : theme;
     const name = "Jimmy Camangon";
 
-
-    const slideInDuration = 800; 
-    const slideOutDuration = 800; 
-    const totalAnimationTime = slideInDuration + slideOutDuration;
-
     useEffect(() => {
+        // Start fade in immediately
+        setTimeout(() => {
+            setFadeState('fadeIn');
+        }, 100);
 
-        const fadeOutTimer = setTimeout(() => {
-            setStartFadeOut(true);
-        }, slideInDuration);
-
-
-        const finishTimer = setTimeout(() => {
+        // Finish after 3 seconds
+        setTimeout(() => {
             onFinish();
-        }, totalAnimationTime);
+        }, 3000);
 
         return () => {
-            clearTimeout(fadeOutTimer);
-            clearTimeout(finishTimer);
+            // Cleanup any timeouts if component unmounts
         };
-    }, [onFinish, slideInDuration, totalAnimationTime]);
+    }, [onFinish]);
 
     return (
         <div
-            className={`fixed inset-0 flex items-center justify-center transition-opacity duration-[2000ms] ${
-                startFadeOut ? "opacity-0" : "opacity-100"
-            } ${
-                theme === "dark"
-                    ? "bg-darkTheme text-white"
-                    : "bg-lightTheme text-black"
+            className={`fixed inset-0 flex items-center justify-center intro-container ${fadeState} ${
+                currentTheme === "dark" ? "bg-darkTheme text-whiteColor" : "bg-lightTheme text-textDark"
             }`}
         >
-            <h1 className="split-text ">
-                {name.split("").map((letter, index) => (
-                    <span key={index} className={`letter`}>
-                        {letter === " " ? "\u00A0" : letter}
-                    </span>
-                ))}
+            <h1 className={`intro-text ${fadeState}`}>
+                {name}
             </h1>
         </div>
     );

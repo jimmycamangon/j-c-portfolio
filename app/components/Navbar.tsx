@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { RiMoonFill, RiSunLine } from "react-icons/ri"
 import { IoMdMenu, IoMdClose } from "react-icons/io"
-import Logo from "../../public/J-C-LOGO.png"
+import Logo from "../../public/j-c-logo-v2.png"
 
 interface NavItem {
     label: string
@@ -21,7 +21,7 @@ const NAV_ITEMS: Array<NavItem> = [
         page: "projects",
     },
     {
-        label: "Experience",
+        label: "Background",
         page: "experience",
     },
     {
@@ -40,7 +40,6 @@ const Navbar = () => {
     const currentTheme = theme === "system" ? systemTheme : theme
     const [navbar, setNavbar] = useState(false)
 
-
     useEffect(() => {
         setMounted(true)
     }, [])
@@ -49,62 +48,78 @@ const Navbar = () => {
         return null
     }
 
-
     return (
-        <header className="w-full mx-auto px-5">
-            <div className="justify-between md:items-center md:flex">
-                <div className='flex justify-between w-full items-center'>
-                    <div>
-                        <Image src={Logo} width={80} height={80} alt='J-C-LOGO' className='p-2' />
-                    </div>
-                    <div className='md:hidden'>
-                        <button onClick={() => setNavbar(!navbar)}>
-                            {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
-                        </button>
-                    </div>
+        <>
+            {/* Full screen overlay when nav is open on mobile */}
+            <div 
+                className={`fixed inset-0 transition-all duration-300 nav:hidden ${
+                    navbar ? 'opacity-100 visible' : 'opacity-0 invisible'
+                } ${currentTheme === 'dark' ? 'bg-darkTheme text-whiteColor' : 'bg-lightTheme text-textDark'}`} 
+                style={{ zIndex: 40 }}
+            />
+            
+            <header className="fixed top-0 left-0 h-screen flex flex-col justify-between items-center p-4 z-50">
+                {/* Logo at the top */}
+                <div className={`p-4 flex justify-center items-center transition-all duration-300 ${navbar ? 'w-screen' : 'w-16'} nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800`}>
+                    <Image src={Logo} width={70} height={70} alt='J-C-LOGO' className='p-2' />
                 </div>
 
-                <div
-                    className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 border-b-2 md:border-none  ${navbar ? "block" : "hidden"
-                        }`}
-                >
-                    <div className='items-center justify-center space-y-7 md:flex md:space-x-6 md:space-y-0 dark:border-white-600'>
-                        {NAV_ITEMS.map((item, idx) => {
-                            return (
-                                <Link
-                                    key={idx}
-                                    to={item.page}
-                                    className={
-                                        "block lg:inline-block cursor-pointer transition-transform hover:translate-y-[-5px]" +
-                                        (navbar ? '' : '')
-                                    }
-                                    activeClass="active"
-                                    spy={true}
-                                    smooth={true}
-                                    offset={-100}
-                                    duration={500}
-                                    onClick={() => setNavbar(!navbar)}
-                                >
-                                    {item.label}
-                                </Link>
-                            )
-                        })}
-                        <div className='py-4'>
-                            {currentTheme === "dark" ? (
-                                <button onClick={() => setTheme("light")} className='p-2 rounded bg-lightTheme transition-transform hover:translate-y-[-5px]'>
-                                    <RiSunLine color='black' title={"Light Mode"} />
-                                </button>
-                            ) : (
-                                <button onClick={() => setTheme("dark")} className='p-2 bg-primaryColor rounded-md transition-transform hover:translate-y-[-5px]'>
-                                    <RiMoonFill color='white' title={"Dark Mode"} />
-                                </button>
-                            )}
+                {/* Navigation in the middle */}
+                <nav className={`p-4 rounded-l-lg transition-all duration-300 ${navbar ? 'w-screen' : 'w-16'} nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800`}>
+                    <div className='flex flex-col items-center space-y-8'>
+                        {/* Hamburger button - only visible below 1300px */}
+                        <button 
+                            onClick={() => setNavbar(!navbar)} 
+                            className="text-gray-600 dark:text-gray-300 nav:hidden fixed top-6 right-6"
+                            style={{ zIndex: 60 }}
+                        >
+                            {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={24} />}
+                        </button>
+                        
+                        {/* Navigation items - always visible on desktop, controlled by navbar state below 1300px */}
+                        <div className={`flex flex-col items-center space-y-8 nav:opacity-100 nav:pointer-events-auto ${navbar ? 'opacity-100 mt-8' : 'opacity-0 pointer-events-none'} transition-opacity duration-300`}>
+                            {NAV_ITEMS.map((item, idx) => {
+                                return (
+                                    <Link
+                                        key={idx}
+                                        to={item.page}
+                                        className="text-gray-600 dark:text-gray-300 hover:text-primaryColor dark:hover:text-secondaryColor transition-colors cursor-pointer text-xl nav:text-base"
+                                        activeClass="text-primaryColor dark:text-secondaryColor"
+                                        spy={true}
+                                        smooth={true}
+                                        offset={-50}
+                                        duration={500}
+                                        spyThrottle={100}
+                                        onClick={() => setNavbar(false)}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                )
+                            })}
                         </div>
                     </div>
-                </div>
-            </div>
-        </header>
+                </nav>
 
+                {/* Theme toggler at the bottom */}
+                <div className={`p-4 flex justify-center items-center transition-all duration-300 ${navbar ? 'w-screen' : 'w-16'} nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800`}>
+                    {currentTheme === "dark" ? (
+                        <button 
+                            onClick={() => setTheme("light")} 
+                            className='p-2 rounded bg-lightTheme transition-transform hover:translate-y-[-5px]'
+                        >
+                            <RiSunLine size={20} color='black' title={"Light Mode"} />
+                        </button>
+                    ) : (
+                        <button 
+                            onClick={() => setTheme("dark")} 
+                            className='p-2 rounded bg-primaryColor rounded-md transition-transform hover:translate-y-[-5px]'
+                        >
+                            <RiMoonFill size={20} color='white' title={"Dark Mode"} />
+                        </button>
+                    )}
+                </div>
+            </header>
+        </>
     )
 }
 

@@ -14,8 +14,9 @@ const ExperienceSection = () => {
       initial={{ opacity: 0, y: 50 }} 
       animate={isInView ? { opacity: 1, y: 0 } : {}} 
       transition={{ duration: 0.5 }} 
+      className="min-h-screen flex flex-col py-16 md:py-32"
     >
-      <div className="pb-12 md:pb-60 relative">
+      <div className="flex-grow">
         <h1 className="text-left font-bold text-3xl text-primaryColor dark:text-secondaryColor">
           Work Experience
           <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>

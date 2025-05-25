@@ -17,9 +17,9 @@ const ContactSection = () => {
       initial={{ opacity: 0, y: 50 }} 
       animate={isInView ? { opacity: 1, y: 0 } : {}} 
       transition={{ duration: 0.5 }} 
-      className="pb-12 md:pb-48 text-center"
+      className="min-h-screen flex items-center pb-12 md:pb-24 pt-24"
     >
-      <section id="contact" className="py-12 md:py-24">
+      <div className="w-full">
         <h1 className="text-3xl text-left font-bold text-primaryColor dark:text-secondaryColor mb-4">
           Contact
         </h1>
@@ -28,7 +28,7 @@ const ContactSection = () => {
           Collab? Sure. Need code? Done.
         </p>
         <p className="text-left text-gray-500 dark:text-gray-400 mb-6">
-          I’m all in — coffee helps.
+          I'm all in — coffee helps.
         </p>
 
         <div className="text-left space-y-4">
@@ -57,7 +57,7 @@ const ContactSection = () => {
             </Link>
           </div>
         </div>
-      </section>
+      </div>
     </motion.section>
   );
 };

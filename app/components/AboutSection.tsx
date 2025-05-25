@@ -23,6 +23,8 @@ const skills = [
   { name: "SQL Server" },
   { name: "MySQL" },
   { name: "Crystal Reports" },
+  { name: "Visual Studio Code" },
+  { name: "Visual Studio 2022" },
 ];
 const AboutSection = () => {
   const ref = useRef(null);
@@ -35,8 +37,9 @@ const AboutSection = () => {
       initial={{ opacity: 0, y: 50 }} 
       animate={isInView ? { opacity: 1, y: 0 } : {}} 
       transition={{ duration: 0.5 }} 
+      className="min-h-screen flex flex-col py-16 md:py-32"
     >
-      <div className="pb-60 md:pb-48">
+      <div className="flex-grow">
         <h1 className="text-left font-bold text-3xl text-primaryColor dark:text-secondaryColor">
           About Me
           <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>

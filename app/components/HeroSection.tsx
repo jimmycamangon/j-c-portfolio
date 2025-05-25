@@ -14,7 +14,7 @@ const HeroSection = () => {
       initial={{ opacity: 0, y: 50 }} 
       animate={isInView ? { opacity: 1, y: 0 } : {}} 
       transition={{ duration: 0.5 }} 
-      className="flex flex-col items-center justify-center h-screen sm:py-32 md:flex-row md:justify-between md:items-center"
+      className="min-h-screen flex flex-col items-center justify-center py-16 sm:py-32 md:flex-row md:justify-between md:items-center"
     >
       {/* Left Section: Heading */}
       <motion.div
@@ -24,7 +24,7 @@ const HeroSection = () => {
         transition={{ duration: 1, delay: 0.3 }}
       >
         <h1 className="text-4xl font-bold mt-6 md:mt-0 md:text-6xl">
-          Hey 👋, I’m{" "}
+          Hey 👋, I'm{" "}
           <span className="text-primaryColor font-bold dark:text-secondaryColor">
             Jim
           </span>{" "}

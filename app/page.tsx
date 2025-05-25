@@ -13,22 +13,32 @@ import Navbar from "./components/Navbar";
 import IntroScreen from "./components/IntroScreen";
 
 export default function Home() {
-    const [showIntro, setShowIntro] = useState(true);
+    const [showIntro, setShowIntro] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        // Only show the intro the first time the page loads
-        const hasSeenIntro = sessionStorage.getItem("hasSeenIntro");
-        if (hasSeenIntro) {
-            setShowIntro(false);
-        } else {
-            sessionStorage.setItem("hasSeenIntro", "true");
+        setMounted(true);
+        // Check if this is the first visit
+        const hasSeenIntro = localStorage.getItem('hasSeenIntro');
+        if (!hasSeenIntro) {
+            setShowIntro(true);
         }
+        // Add loaded class to html element
+        document.documentElement.classList.add('loaded');
     }, []);
 
+    const handleIntroFinish = () => {
+        setShowIntro(false);
+        // Save that we've shown the intro
+        localStorage.setItem('hasSeenIntro', 'true');
+    };
+
+    if (!mounted) return null;
+
     return (
-        <div>
+        <div className={showIntro ? 'bg-lightTheme dark:bg-darkTheme' : ''}>
             {showIntro ? (
-                <IntroScreen onFinish={() => setShowIntro(false)} />
+                <IntroScreen onFinish={handleIntroFinish} />
             ) : (
                 <ThemeProvider enableSystem={true} attribute="class">
                     <Navbar />

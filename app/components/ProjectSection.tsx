@@ -17,14 +17,14 @@ const ProjectsSection = () => {
       initial={{ opacity: 0, y: 50 }} 
       animate={isInView ? { opacity: 1, y: 0 } : {}} 
       transition={{ duration: 0.5 }} 
-      className="pb-12 md:pb-48"
+      className="min-h-screen flex flex-col py-16 md:py-32"
     >
-      <h1 className="my-10 text-left font-bold text-3xl text-primaryColor dark:text-secondaryColor">
+      <h1 className="text-left font-bold text-3xl text-primaryColor dark:text-secondaryColor">
         Projects
         <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
       </h1>
 
-      <div className="flex flex-col space-y-28">
+      <div className="flex-grow space-y-12 mt-4">
         {projects.map((project: Project, idx: number) => {
           const isOdd = idx % 2 !== 0;
 
