@@ -4,13 +4,14 @@ import { useSearchParams, useRouter } from "next/navigation";
 import projects from "../components/projects";
 import Image from "next/image";
 import Footer from "../components/Footer";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
 const DisplayProject: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const searchParams = useSearchParams();
   const router = useRouter(); 
 
@@ -23,6 +24,26 @@ const DisplayProject: React.FC = () => {
   // Find the project object with the matching id
   const project =
     projectId !== null ? projects.find((p) => p.id === projectId) : null;
+
+  const handleImageClick = (screenshot: string, index: number) => {
+    setSelectedImage(screenshot);
+    setCurrentImageIndex(index);
+    setShowModal(true);
+  };
+
+  const handlePrevImage = () => {
+    if (project && currentImageIndex > 0) {
+      setCurrentImageIndex(prev => prev - 1);
+      setSelectedImage(project.screenshots[currentImageIndex - 1]);
+    }
+  };
+
+  const handleNextImage = () => {
+    if (project && currentImageIndex < project.screenshots.length - 1) {
+      setCurrentImageIndex(prev => prev + 1);
+      setSelectedImage(project.screenshots[currentImageIndex + 1]);
+    }
+  };
 
   // Display the project details if it's found
   if (project) {
@@ -87,10 +108,7 @@ const DisplayProject: React.FC = () => {
                 height={300}
                 style={{ width: "auto", height: "auto", cursor: "pointer" }}
                 className="rounded-xl shadow-xl"
-                onClick={() => {
-                  setSelectedImage(screenshot);
-                  setShowModal(true);
-                }}
+                onClick={() => handleImageClick(screenshot, index)}
               />
             </div>
           ))}
@@ -99,12 +117,24 @@ const DisplayProject: React.FC = () => {
         {/* Modal */}
         {showModal && (
           <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-textDark bg-opacity-70 z-50">
+            {/* Close button */}
             <button
               onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 text-lightTheme text-4xl  p-2 rounded-full hover:bg-opacity-70 transition"
+              className="absolute top-4 right-4 text-white text-4xl p-2 rounded-full hover:bg-white/10 transition z-[60]"
             >
-              <IoCloseSharp />
+              <IoCloseSharp className="text-white" />
             </button>
+
+            {/* Previous button */}
+            <button
+              onClick={handlePrevImage}
+              className={`absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl p-4 rounded-full hover:bg-white/10 transition z-[60] ${currentImageIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+              disabled={currentImageIndex === 0}
+            >
+              <FaChevronLeft className="text-white" size={30} />
+            </button>
+
+            {/* Image container */}
             <div className="max-w-3xl max-h-full overflow-auto relative">
               <Image
                 src={selectedImage}
@@ -115,6 +145,15 @@ const DisplayProject: React.FC = () => {
                 className="rounded-md"
               />
             </div>
+
+            {/* Next button */}
+            <button
+              onClick={handleNextImage}
+              className={`absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl p-4 rounded-full hover:bg-white/10 transition z-[60] ${currentImageIndex === project.screenshots.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+              disabled={currentImageIndex === project.screenshots.length - 1}
+            >
+              <FaChevronRight className="text-white" size={30} />
+            </button>
           </div>
         )}
 

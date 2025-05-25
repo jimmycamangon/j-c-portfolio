@@ -50,15 +50,15 @@ const ProjectsSection = () => {
                   <p className="text-md leading-7 mb-4 text-neutral-600 dark:text-neutral-400">
                     {project.description}
                   </p>
-                  <div className="flex flex-row align-bottom space-x-4">
-                    <Link
-                      href={{ pathname: "/pages/", query: { id: project.id } }}
-                    >
-                      <div className="text-primaryColor dark:text-secondaryColor underline flex justify-between w-full items-center transition-transform hover:translate-x-3">
-                        <span className="mr-2">Explore</span> <FaArrowRight />
-                      </div>
-                    </Link>
-                  </div>
+                  <Link
+                    href={{ pathname: "/pages/", query: { id: project.id } }}
+                    className="block w-full relative z-10"
+                  >
+                    <button className="group text-primaryColor dark:text-secondaryColor hover:text-blue-700 dark:hover:text-blue-400 px-4 py-2 rounded-md flex items-center justify-center space-x-3 transition-all duration-300 border border-primaryColor dark:border-secondaryColor hover:border-blue-700 dark:hover:border-blue-400 w-full sm:w-auto bg-transparent">
+                      <span className="text-sm font-normal">View Details</span>
+                      <FaArrowRight className="transform group-hover:translate-x-2 transition-transform duration-300" />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>

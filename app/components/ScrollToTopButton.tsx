@@ -32,6 +32,7 @@ const ScrollToTopButton = () => {
         isVisible ? "block" : "hidden"
       } fixed bottom-4 right-4 p-3 rounded-full bg-primaryColor text-white dark:text-lightTheme shadow-md focus:outline-none`}
       onClick={scrollToTop}
+      style={{ zIndex: 100 }}
     >
       <FaArrowUp />
     </button>

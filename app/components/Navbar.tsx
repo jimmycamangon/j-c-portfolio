@@ -58,24 +58,24 @@ const Navbar = () => {
                 style={{ zIndex: 40 }}
             />
             
-            <header className="fixed top-0 left-0 h-screen flex flex-col justify-between items-center p-4 z-50">
+            <header className={`fixed top-0 inset-x-0 nav:inset-x-auto nav:left-0 ${navbar ? 'h-screen' : 'h-auto'} nav:h-screen flex flex-col justify-between items-center p-4 z-50`}>
+                {/* Hamburger button - only visible below 1300px */}
+                <button 
+                    onClick={() => setNavbar(!navbar)} 
+                    className="text-gray-600 dark:text-gray-300 nav:hidden fixed top-6 right-6 pointer-events-auto"
+                    style={{ zIndex: 60 }}
+                >
+                    {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={24} />}
+                </button>
+
                 {/* Logo at the top */}
-                <div className={`p-4 flex justify-center items-center transition-all duration-300 ${navbar ? 'w-screen' : 'w-16'} nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800`}>
+                <div className={`p-4 flex justify-start w-full nav:justify-center transition-all duration-300 nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? 'opacity-100' : 'opacity-0 nav:opacity-100'} ${!navbar && 'hidden nav:flex'}`}>
                     <Image src={Logo} width={70} height={70} alt='J-C-LOGO' className='p-2' />
                 </div>
 
                 {/* Navigation in the middle */}
-                <nav className={`p-4 rounded-l-lg transition-all duration-300 ${navbar ? 'w-screen' : 'w-16'} nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800`}>
+                <nav className={`p-4 rounded-l-lg transition-all duration-300 ${navbar ? 'w-screen pointer-events-auto' : 'w-16 pointer-events-none'} nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800 nav:pointer-events-auto ${navbar ? 'opacity-100' : 'opacity-0 nav:opacity-100'} ${!navbar && 'hidden nav:flex'}`}>
                     <div className='flex flex-col items-center space-y-8'>
-                        {/* Hamburger button - only visible below 1300px */}
-                        <button 
-                            onClick={() => setNavbar(!navbar)} 
-                            className="text-gray-600 dark:text-gray-300 nav:hidden fixed top-6 right-6"
-                            style={{ zIndex: 60 }}
-                        >
-                            {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={24} />}
-                        </button>
-                        
                         {/* Navigation items - always visible on desktop, controlled by navbar state below 1300px */}
                         <div className={`flex flex-col items-center space-y-8 nav:opacity-100 nav:pointer-events-auto ${navbar ? 'opacity-100 mt-8' : 'opacity-0 pointer-events-none'} transition-opacity duration-300`}>
                             {NAV_ITEMS.map((item, idx) => {
@@ -83,8 +83,8 @@ const Navbar = () => {
                                     <Link
                                         key={idx}
                                         to={item.page}
-                                        className="text-gray-600 dark:text-gray-300 hover:text-primaryColor dark:hover:text-secondaryColor transition-colors cursor-pointer text-xl nav:text-base"
-                                        activeClass="text-primaryColor dark:text-secondaryColor"
+                                        className="text-gray-600 dark:text-gray-300 hover:text-primaryColor dark:hover:text-secondaryColor transition-colors cursor-pointer text-xl nav:text-base relative group"
+                                        activeClass="!text-primaryColor dark:!text-secondaryColor after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primaryColor dark:after:bg-secondaryColor"
                                         spy={true}
                                         smooth={true}
                                         offset={-50}
@@ -93,6 +93,7 @@ const Navbar = () => {
                                         onClick={() => setNavbar(false)}
                                     >
                                         {item.label}
+                                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primaryColor dark:bg-secondaryColor transition-all duration-300 group-hover:w-full"></span>
                                     </Link>
                                 )
                             })}
@@ -101,7 +102,7 @@ const Navbar = () => {
                 </nav>
 
                 {/* Theme toggler at the bottom */}
-                <div className={`p-4 flex justify-center items-center transition-all duration-300 ${navbar ? 'w-screen' : 'w-16'} nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800`}>
+                <div className={`p-4 flex justify-start w-full nav:justify-center transition-all duration-300 nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? 'opacity-100' : 'opacity-0 nav:opacity-100'} ${!navbar && 'hidden nav:flex'}`}>
                     {currentTheme === "dark" ? (
                         <button 
                             onClick={() => setTheme("light")} 
