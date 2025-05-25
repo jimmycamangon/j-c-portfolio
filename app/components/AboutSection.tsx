@@ -22,42 +22,42 @@ const skills = [
   { 
     name: "Github",
     icon: FaGithub,
-    color: "text-gray-800 dark:text-white"
+    color: "text-[#2b3137] dark:text-[#f0f6fc]"
   },
   { 
     name: "Azure DevOps",
     icon: SiAzuredevops,
-    color: "text-blue-600"
+    color: "text-[#0078d4]"
   },
   { 
     name: "Docker",
     icon: FaDocker,
-    color: "text-blue-500"
+    color: "text-[#2496ED]"
   },
   { 
     name: "SQL Server",
     icon: FaDatabase,
-    color: "text-red-600"
+    color: "text-[#CC2927]"
   },
   { 
     name: "MySQL",
     icon: SiMysql,
-    color: "text-orange-500"
+    color: "text-[#00758F]"
   },
   { 
     name: "Crystal Reports",
     icon: FaFileAlt,
-    color: "text-green-600"
+    color: "text-[#14A44D]"
   },
   { 
     name: "VS Code",
     icon: SiVisualstudiocode,
-    color: "text-blue-500"
+    color: "text-[#007ACC]"
   },
   { 
     name: "Visual Studio",
     icon: SiVisualstudio,
-    color: "text-purple-600"
+    color: "text-[#5C2D91]"
   }
 ];
 const AboutSection = () => {
@@ -112,7 +112,7 @@ const AboutSection = () => {
                   key={idx}
                   className="p-4 flex flex-col items-center justify-center group transition-all duration-300 hover:transform hover:scale-110"
                 >
-                  <Icon className={`text-4xl ${skill.color} mb-2`} />
+                  <Icon className={`text-5xl ${skill.color} mb-2 transition-all duration-300 group-hover:opacity-80`} />
                   <span className="text-sm text-gray-600 dark:text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {skill.name}
                   </span>
