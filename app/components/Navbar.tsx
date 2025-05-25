@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-scroll/modules'
+import { Link } from 'react-scroll'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { RiMoonFill, RiSunLine } from "react-icons/ri"
@@ -21,7 +21,7 @@ const NAV_ITEMS: Array<NavItem> = [
         page: "projects",
     },
     {
-        label: "Background",
+        label: "Experience",
         page: "experience",
     },
     {
@@ -69,8 +69,17 @@ const Navbar = () => {
                 </button>
 
                 {/* Logo at the top */}
-                <div className={`p-4 flex justify-start w-full nav:justify-center transition-all duration-300 nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? 'opacity-100' : 'opacity-0 nav:opacity-100'} ${!navbar && 'hidden nav:flex'}`}>
-                    <Image src={Logo} width={70} height={70} alt='J-C-LOGO' className='p-2' />
+                <div className={`p-4 flex justify-start w-full nav:justify-start transition-all duration-300 nav:w-48 nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? 'bg-gray-100 dark:bg-gray-800' : ''}`}>
+                    <Link
+                        to="home"
+                        smooth={true}
+                        offset={-100}
+                        duration={500}
+                        className="cursor-pointer transition-transform hover:scale-110 z-50"
+                        onClick={() => setNavbar(false)}
+                    >
+                        <Image src={Logo} width={70} height={70} alt='J-C-LOGO' className='p-2' priority />
+                    </Link>
                 </div>
 
                 {/* Navigation in the middle */}
@@ -87,7 +96,7 @@ const Navbar = () => {
                                         activeClass="!text-primaryColor dark:!text-secondaryColor after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primaryColor dark:after:bg-secondaryColor"
                                         spy={true}
                                         smooth={true}
-                                        offset={-50}
+                                        offset={-100}
                                         duration={500}
                                         spyThrottle={100}
                                         onClick={() => setNavbar(false)}
@@ -102,7 +111,7 @@ const Navbar = () => {
                 </nav>
 
                 {/* Theme toggler at the bottom */}
-                <div className={`p-4 flex justify-start w-full nav:justify-center transition-all duration-300 nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? 'opacity-100' : 'opacity-0 nav:opacity-100'} ${!navbar && 'hidden nav:flex'}`}>
+                <div className={`p-4 flex justify-start w-full nav:justify-start transition-all duration-300 nav:w-48 ${!navbar && 'bg-gray-100 dark:bg-gray-800'} nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? 'opacity-100' : 'opacity-0 nav:opacity-100'} ${!navbar && 'hidden nav:flex'}`}>
                     {currentTheme === "dark" ? (
                         <button 
                             onClick={() => setTheme("light")} 

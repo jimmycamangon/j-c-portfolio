@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import Avatar from "../../public/J-C Avatar.png";
 import { motion, useInView } from "framer-motion";
+import { FaGithub, FaDocker, FaDatabase, FaFileAlt } from "react-icons/fa";
+import { SiAzuredevops, SiVisualstudiocode, SiVisualstudio, SiMysql } from "react-icons/si";
 
 // const skills = [
 //   { name: "JAVA", image: "/JAVA.png" },
@@ -17,14 +19,46 @@ import { motion, useInView } from "framer-motion";
 //   { name: ".NETCore", image: "/NET_CORE.png" },
 // ];
 const skills = [
-  { name: "Github" },
-  { name: "Azure DevOps" },
-  { name: "Docker" },
-  { name: "SQL Server" },
-  { name: "MySQL" },
-  { name: "Crystal Reports" },
-  { name: "Visual Studio Code" },
-  { name: "Visual Studio 2022" },
+  { 
+    name: "Github",
+    icon: FaGithub,
+    color: "text-gray-800 dark:text-white"
+  },
+  { 
+    name: "Azure DevOps",
+    icon: SiAzuredevops,
+    color: "text-blue-600"
+  },
+  { 
+    name: "Docker",
+    icon: FaDocker,
+    color: "text-blue-500"
+  },
+  { 
+    name: "SQL Server",
+    icon: FaDatabase,
+    color: "text-red-600"
+  },
+  { 
+    name: "MySQL",
+    icon: SiMysql,
+    color: "text-orange-500"
+  },
+  { 
+    name: "Crystal Reports",
+    icon: FaFileAlt,
+    color: "text-green-600"
+  },
+  { 
+    name: "VS Code",
+    icon: SiVisualstudiocode,
+    color: "text-blue-500"
+  },
+  { 
+    name: "Visual Studio",
+    icon: SiVisualstudio,
+    color: "text-purple-600"
+  }
 ];
 const AboutSection = () => {
   const ref = useRef(null);
@@ -70,20 +104,24 @@ const AboutSection = () => {
           Development Tools
         </h1>
         <div className="space-y-5">
-          <div className="flex md:flex-row flex-wrap justify-center items-center">
-            {skills.map((skill, idx) => (
-              <div
-                key={idx}
-                className="p-2 flex justify-center flex-col items-center"
-              >
-                <h1 className="text-center shadow-md p-2 rounded bg-grayColor text-whiteColor">
-                  {skill.name}
-                </h1>
-              </div>
-            ))}
+          <div className="flex md:flex-row flex-wrap justify-center items-center gap-6">
+            {skills.map((skill, idx) => {
+              const Icon = skill.icon;
+              return (
+                <div
+                  key={idx}
+                  className="p-4 flex flex-col items-center justify-center group transition-all duration-300 hover:transform hover:scale-110"
+                >
+                  <Icon className={`text-4xl ${skill.color} mb-2`} />
+                  <span className="text-sm text-gray-600 dark:text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {skill.name}
+                  </span>
+                </div>
+              );
+            })}
           </div>
 
-          <p className="italic opacity-80 text-center">Tools of my trade.</p>
+          <p className="italic opacity-80 text-center mt-8">Tools of my trade.</p>
         </div>
       </div>
     </motion.section>

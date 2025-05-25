@@ -84,10 +84,6 @@ const ExperienceSection = () => {
                       </ul>
                     </li>
                     <li>
-                      Optimized 10+ <b>SQL stored procedures</b> (~40% faster
-                      queries)
-                    </li>
-                    <li>
                       Implemented <b>new features</b> for company website:
                       <ul className="ml-5 mt-1 space-y-1 list-disc">
                         <li>
