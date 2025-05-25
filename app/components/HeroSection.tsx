@@ -24,7 +24,7 @@ const HeroSection = () => {
         transition={{ duration: 1, delay: 0.3 }}
       >
         <h1 className="text-4xl font-bold mt-6 md:mt-0 md:text-6xl">
-          Hey 👋, I'm{" "}
+          Hey 👋, I&apos;m{" "}
           <span className="text-primaryColor font-bold dark:text-secondaryColor">
             Jim
           </span>{" "}

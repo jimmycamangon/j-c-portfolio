@@ -28,7 +28,7 @@ const ContactSection = () => {
           Collab? Sure. Need code? Done.
         </p>
         <p className="text-left text-gray-500 dark:text-gray-400 mb-6">
-          I'm all in — coffee helps.
+          I&apos;m all in — coffee helps.
         </p>
 
         <div className="text-left space-y-4">

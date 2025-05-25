@@ -4,7 +4,6 @@ import React, { useEffect, useRef, ReactNode } from "react"
 interface Props {
   offset?: string
   children?: ReactNode
-
 }
 
 export default function SlideUp({ children, offset = "0px" }: Props) {
@@ -26,7 +25,13 @@ export default function SlideUp({ children, offset = "0px" }: Props) {
     if (ref.current) {
       observer.observe(ref.current)
     }
-  }, [ref])
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current)
+      }
+    }
+  }, [offset])
 
   return (
     <div ref={ref} className="relative opacity-0">
