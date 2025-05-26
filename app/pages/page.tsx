@@ -66,17 +66,17 @@ const DisplayProject: React.FC = () => {
           </h2>
           <div className="border-b border-gray-400 pb-3 text-sm py-10">
             <span className="font-bold text-primaryColor text-lg">
-              Description:
+              Problem:
             </span>
             <br />
-            <p className="indent-8 py-5">{project.obj}</p>
+            <p className="indent-8 py-5">{project.problem}</p>
           </div>
           <div className="py-5">
-            <p className="font-bold text-primaryColor text-lg">How it works:</p>
+            <p className="font-bold text-primaryColor text-lg">Solutions:</p>
             <ul className="m-5">
-              {project.key_features.map((feature, index) => (
+              {project.solution.map((feature, index) => (
                 <li key={index} className="py-2 text-sm">
-                  - {feature}
+                  • {feature}
                 </li>
               ))}
             </ul>

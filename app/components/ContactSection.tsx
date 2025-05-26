@@ -20,19 +20,19 @@ const ContactSection = () => {
       className="min-h-screen flex items-center pb-12 md:pb-24 pt-24"
     >
       <div className="w-full">
-        <h1 className="text-3xl text-left font-bold text-primaryColor dark:text-secondaryColor mb-4">
+        <h1 className="text-3xl text-left font-bold text-gray-900 dark:text-white mb-4">
           Contact
         </h1>
 
-        <p className="text-lg text-left dark:text-whiteColor mb-2">
+        <p className="text-lg text-left text-gray-900 dark:text-white mb-2">
           Collab? Sure. Need code? Done.
         </p>
-        <p className="text-left text-gray-500 dark:text-gray-400 mb-6">
+        <p className="text-left text-description-light dark:text-description-dark mb-6">
           I&apos;m all in — coffee helps.
         </p>
 
         <div className="text-left space-y-4">
-          <p className="flex items-start justify-start gap-2 text-sm dark:text-secondaryColor">
+          <p className="flex items-start justify-start gap-2 text-sm text-description-light dark:text-description-dark">
             <BiLogoGmail className="text-xl" />
             hi@jimmycamangon121801@gmail.com
           </p>

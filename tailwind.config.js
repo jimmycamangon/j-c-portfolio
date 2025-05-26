@@ -27,6 +27,10 @@ module.exports = {
       widthGray: "#D3D3D3",
       textDark: "#000000",
       whiteColor: "#fff",
+      description: {
+        light: "#41464c", // Gray-500 for light mode descriptions
+        dark: "#9ca3af"   // Gray-400 for dark mode descriptions
+      }
     },
   },
   plugins: [],

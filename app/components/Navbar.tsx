@@ -21,7 +21,7 @@ const NAV_ITEMS: Array<NavItem> = [
         page: "projects",
     },
     {
-        label: "Experience",
+        label: "Background",
         page: "experience",
     },
     {
@@ -59,27 +59,30 @@ const Navbar = () => {
             />
             
             <header className={`fixed top-0 inset-x-0 nav:inset-x-auto nav:left-0 ${navbar ? 'h-screen' : 'h-auto'} nav:h-screen flex flex-col justify-between items-center p-4 z-50`}>
-                {/* Hamburger button - only visible below 1300px */}
-                <button 
-                    onClick={() => setNavbar(!navbar)} 
-                    className="text-gray-600 dark:text-gray-300 nav:hidden fixed top-6 right-6 pointer-events-auto"
-                    style={{ zIndex: 60 }}
-                >
-                    {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={24} />}
-                </button>
+                {/* Top bar container for mobile */}
+                <div className="flex justify-between items-center w-full nav:block">
+                    {/* Logo */}
+                    <div className={`flex justify-start nav:justify-start transition-all duration-300 nav:w-48 nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? 'bg-gray-100 dark:bg-gray-800' : ''}`}>
+                        <Link
+                            to="home"
+                            smooth={true}
+                            offset={-100}
+                            duration={500}
+                            className="cursor-pointer transition-transform hover:scale-110 z-50"
+                            onClick={() => setNavbar(false)}
+                        >
+                            <Image src={Logo} width={70} height={70} alt='J-C-LOGO' className='p-2' priority />
+                        </Link>
+                    </div>
 
-                {/* Logo at the top */}
-                <div className={`p-4 flex justify-start w-full nav:justify-start transition-all duration-300 nav:w-48 nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? 'bg-gray-100 dark:bg-gray-800' : ''}`}>
-                    <Link
-                        to="home"
-                        smooth={true}
-                        offset={-100}
-                        duration={500}
-                        className="cursor-pointer transition-transform hover:scale-110 z-50"
-                        onClick={() => setNavbar(false)}
+                    {/* Hamburger button - only visible below 1300px */}
+                    <button 
+                        onClick={() => setNavbar(!navbar)} 
+                        className="text-gray-600 dark:text-gray-300 nav:hidden pointer-events-auto p-2"
+                        style={{ zIndex: 60 }}
                     >
-                        <Image src={Logo} width={70} height={70} alt='J-C-LOGO' className='p-2' priority />
-                    </Link>
+                        {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={24} />}
+                    </button>
                 </div>
 
                 {/* Navigation in the middle */}
@@ -96,7 +99,7 @@ const Navbar = () => {
                                         activeClass="!text-primaryColor dark:!text-secondaryColor after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primaryColor dark:after:bg-secondaryColor"
                                         spy={true}
                                         smooth={true}
-                                        offset={-100}
+                                        offset={-50}
                                         duration={500}
                                         spyThrottle={100}
                                         onClick={() => setNavbar(false)}

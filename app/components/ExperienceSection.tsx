@@ -17,7 +17,7 @@ const ExperienceSection = () => {
       className="min-h-screen flex flex-col py-16 md:py-32"
     >
       <div className="flex-grow">
-        <h1 className="text-left font-bold text-3xl text-primaryColor dark:text-secondaryColor">
+        <h1 className="text-left font-bold text-3xl text-gray-900 dark:text-white">
           Work Experience
           <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
         </h1>
@@ -26,7 +26,7 @@ const ExperienceSection = () => {
         {/* Flex Section */}
         <div className="w-full py-4">
           <div className="flex space-y-10 justify-center align-top md:space-x-10 md:flex-row md:text-left relative">
-            <div className="absolute left-10 top-0 flex justify-center items-center dark:bg-darkTheme  rounded-md md">
+            <div className="absolute left-10 top-0 flex justify-center items-center dark:bg-darkTheme rounded-md md">
               <Image
                 src={AMSPEC}
                 alt="Company Logo"
@@ -36,19 +36,19 @@ const ExperienceSection = () => {
               />
             </div>
             <div className="text-left md:w-full md:text-left pt-4 flex flex-col">
-              <div className="text-primaryColor font-bold text-2xl py-2 dark:text-secondaryColor">
+              <div className="text-gray-900 dark:text-white font-bold text-2xl py-2">
                 Programmer
               </div>
-              <span className="font-bold">
+              <span className="font-bold text-gray-900 dark:text-white">
                 Amalgamated Specialties Corporation (AMSPEC) • Muntinlupa, Metro
                 Manila
               </span>
               <br />
-              <span className="font-normal italic">
+              <span className="font-normal italic text-description-light dark:text-description-dark">
                 September 2023 to Present
               </span>
               <br />
-              <ul className="space-y-2">
+              <ul className="space-y-2 text-description-light dark:text-description-dark">
                 <li className="text-left">
                   As <b>primary developer</b> (with consultant mentorship) at
                   AMSPEC:
@@ -67,7 +67,7 @@ const ExperienceSection = () => {
                 </li>
 
                 <li className="text-left">
-                  <b>Key Contributions:</b>
+                  <b className="text-gray-900 dark:text-white">Key Contributions:</b>
                   <ul className="ml-5 mt-1 space-y-1 list-disc">
                     <li>
                       Developed critical financial reports:

@@ -74,7 +74,7 @@ const AboutSection = () => {
       className="min-h-screen flex flex-col py-16 md:py-32"
     >
       <div className="flex-grow">
-        <h1 className="text-left font-bold text-3xl text-primaryColor dark:text-secondaryColor">
+        <h1 className="text-left font-bold text-3xl text-gray-900 dark:text-white">
           About Me
           <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
         </h1>
@@ -85,14 +85,16 @@ const AboutSection = () => {
           </div>
 
           <div className="text-center md:w-5/6 md:text-left">
-            <span className="font-bold">
+            <span className="font-bold text-gray-900 dark:text-white">
               Jimmy Camangon | BSc in Information Technology
             </span>
             <br />
             <br />
-            Passionate about code since Senior High (ICT). I build scalable
-            solutions, solve real problems, and turn ideas into efficient
-            reliable software. Now shipping robust software that just works.~
+            <p className="text-description-light dark:text-description-dark">
+              Passionate about code since Senior High (ICT). I build scalable
+              solutions, solve real problems, and turn ideas into efficient
+              reliable software. Now shipping robust software that just works.~
+            </p>
           </div>
         </div>
         <br />
@@ -100,7 +102,7 @@ const AboutSection = () => {
         <br />
         <br />
 
-        <h1 className="text-center pt-10 font-bold text-3xl text-primaryColor dark:text-secondaryColor md:p-6 p-8">
+        <h1 className="text-center pt-10 font-bold text-3xl text-gray-900 dark:text-white md:p-6 p-8">
           Development Tools
         </h1>
         <div className="space-y-5">
@@ -113,7 +115,7 @@ const AboutSection = () => {
                   className="p-4 flex flex-col items-center justify-center group transition-all duration-300 hover:transform hover:scale-110"
                 >
                   <Icon className={`text-5xl ${skill.color} mb-2 transition-all duration-300 group-hover:opacity-80`} />
-                  <span className="text-sm text-gray-600 dark:text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-sm text-description-light dark:text-description-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {skill.name}
                   </span>
                 </div>
@@ -121,7 +123,7 @@ const AboutSection = () => {
             })}
           </div>
 
-          <p className="italic opacity-80 text-center mt-8">Tools of my trade.</p>
+          <p className="italic text-description-light dark:text-description-dark text-center mt-8">Tools of my trade.</p>
         </div>
       </div>
     </motion.section>

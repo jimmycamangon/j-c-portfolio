@@ -19,7 +19,7 @@ const ProjectsSection = () => {
       transition={{ duration: 0.5 }} 
       className="min-h-screen flex flex-col py-16 md:py-32"
     >
-      <h1 className="text-left font-bold text-3xl text-primaryColor dark:text-secondaryColor">
+      <h1 className="text-left font-bold text-3xl text-gray-900 dark:text-white">
         Projects
         <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
       </h1>
@@ -46,8 +46,8 @@ const ProjectsSection = () => {
                   />
                 </div>
                 <div className="mt-8 md:w-1/2">
-                  <h1 className="text-2xl font-bold mb-3">{project.name}</h1>
-                  <p className="text-md leading-7 mb-4 text-neutral-600 dark:text-neutral-400">
+                  <h1 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">{project.name}</h1>
+                  <p className="text-md leading-7 mb-4 text-description-light dark:text-description-dark">
                     {project.description}
                   </p>
                   <Link

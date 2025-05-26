@@ -2,8 +2,8 @@ export type Project = {
     id: number;
     name: string;
     description: string;
-    obj: string;
-    key_features: string[];
+    problem: string;
+    solution: string[];
     image: string;
     screenshots: string[];
     technologies: string[];
