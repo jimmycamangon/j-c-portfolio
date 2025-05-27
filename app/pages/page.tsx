@@ -52,36 +52,36 @@ const DisplayProject: React.FC = () => {
         <div className="w-full mx-auto px-5 p-5">
           <button
             onClick={() => router.back()} // Use router.back() to go to the previous page
-            className="flex space-x-2 justify-end items-center transition-transform hover:-translate-x-3"
+            className="group flex space-x-2 justify-end items-center"
           >
-            <FaArrowLeft className="text-primaryColor dark:text-secondaryColor" />
+            <FaArrowLeft className="text-primaryColor dark:text-secondaryColor group-hover:-translate-x-2 transition-transform duration-300" />
             <h1 className="text-primaryColor dark:text-secondaryColor underline">
               Back
             </h1>
           </button>
         </div>
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl overflow-x-hidden dark:bg-lightTheme dark:text-textDark p-5 m-6 rounded-lg">
-          <h2 className="font-bold text-center text-3xl py-2 text-primaryColor">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl overflow-x-hidden  p-5 m-6 rounded-lg">
+          <h2 className="font-bold text-center text-3xl text-primaryColor dark:text-secondaryColor py-2">
             {project.name}
           </h2>
           <div className="border-b border-gray-400 pb-3 text-sm py-10">
-            <span className="font-bold text-primaryColor text-lg">
+            <span className="font-bold text-lg text-primaryColor dark:text-secondaryColor">
               Problem:
             </span>
             <br />
-            <p className="indent-8 py-5">{project.problem}</p>
+            <p className="indent-8 py-5 text-description-light dark:text-description-dark">{project.problem}</p>
           </div>
           <div className="py-5">
-            <p className="font-bold text-primaryColor text-lg">Solutions:</p>
+            <p className="font-bold text-lg text-primaryColor dark:text-secondaryColor">Solutions:</p>
             <ul className="m-5">
               {project.solution.map((feature, index) => (
-                <li key={index} className="py-2 text-sm">
+                <li key={index} className="py-2 text-sm text-description-light dark:text-description-dark">
                   • {feature}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="font-bold text-primaryColor text-lg">
+          <div className="font-bold text-lg text-primaryColor dark:text-secondaryColor">
             Technologies Used:
           </div>
           <div className="flex flex-row flex-wrap justify-center md:justify-start items-center py-5">
@@ -100,14 +100,14 @@ const DisplayProject: React.FC = () => {
         </h1>
         <div className="flex flex-wrap flex-row mx-auto max-w-7xl px-4 md:max-w-10xl overflow-x-hidden justify-center items-center">
           {project.screenshots.map((screenshot, index) => (
-            <div key={index} className="screenshot-container p-2 py-10">
+            <div key={index} className="screenshot-container p-2 py-10 transform transition-all duration-300 hover:-translate-y-2">
               <Image
                 src={screenshot}
                 alt={`Screenshot`}
                 width={300}
                 height={300}
                 style={{ width: "auto", height: "auto", cursor: "pointer" }}
-                className="rounded-xl shadow-xl"
+                className="rounded-xl shadow-xl transition-shadow duration-300 hover:shadow-2xl"
                 onClick={() => handleImageClick(screenshot, index)}
               />
             </div>

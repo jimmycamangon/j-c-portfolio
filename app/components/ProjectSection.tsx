@@ -46,7 +46,7 @@ const ProjectsSection = () => {
                   />
                 </div>
                 <div className="mt-8 md:w-1/2">
-                  <h1 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">{project.name}</h1>
+                  <h1 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{project.name}</h1>
                   <p className="text-md leading-7 mb-4 text-description-light dark:text-description-dark">
                     {project.description}
                   </p>

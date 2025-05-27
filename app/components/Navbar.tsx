@@ -39,9 +39,23 @@ const Navbar = () => {
     const { systemTheme, theme, setTheme } = useTheme();
     const currentTheme = theme === "system" ? systemTheme : theme
     const [navbar, setNavbar] = useState(false)
+    const [isScrolled, setIsScrolled] = useState(false)
 
     useEffect(() => {
         setMounted(true)
+
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true)
+            } else {
+                setIsScrolled(false)
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
     }, [])
 
     if (!mounted) {
@@ -60,7 +74,7 @@ const Navbar = () => {
             
             <header className={`fixed top-0 inset-x-0 nav:inset-x-auto nav:left-0 ${navbar ? 'h-screen' : 'h-auto'} nav:h-screen flex flex-col justify-between items-center p-4 z-50`}>
                 {/* Top bar container for mobile */}
-                <div className="flex justify-between items-center w-full nav:block">
+                <div className={`flex justify-between items-center w-full nav:block transition-all duration-300 ${isScrolled && !navbar ? 'backdrop-blur-md bg-white/30 dark:bg-black/30 shadow-lg rounded-lg' : ''}`}>
                     {/* Logo */}
                     <div className={`flex justify-start nav:justify-start transition-all duration-300 nav:w-48 nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? 'bg-gray-100 dark:bg-gray-800' : ''}`}>
                         <Link
