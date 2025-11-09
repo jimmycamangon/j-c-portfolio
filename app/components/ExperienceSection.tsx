@@ -45,7 +45,7 @@ const ExperienceSection = () => {
               </span>
               <br />
               <span className="font-normal italic text-description-light dark:text-description-dark">
-                September 2023 to Present
+                September 2023 to November 2025 (2 years)
               </span>
               <br />
               <ul className="space-y-2 text-description-light dark:text-description-dark">
