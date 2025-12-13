@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import AMSPEC from "../../public/logo-amspec.jpg";
+import ITM from "../../public/logo-itm.jpeg";
 import { motion, useInView } from "framer-motion";
 
 const ExperienceSection = () => {
@@ -43,9 +44,8 @@ const ExperienceSection = () => {
                 Amalgamated Specialties Corporation (AMSPEC) • Muntinlupa, Metro
                 Manila
               </span>
-              <br />
               <span className="font-normal italic text-description-light dark:text-description-dark">
-                September 2023 to November 2025 (2 years)
+                September 2023 to October 2025 (2 years)
               </span>
               <br />
               <ul className="space-y-2 text-description-light dark:text-description-dark">
@@ -102,7 +102,7 @@ const ExperienceSection = () => {
             </div>
           </div>
         </div>
-        <div className="border-2 text-widthGray"></div>
+
 
         {/* End */}
         <h1 className="pt-10 font-bold text-1xl text-primaryColor dark:text-secondaryColor md:p-6 p-8">
@@ -111,6 +111,92 @@ const ExperienceSection = () => {
             C# | PHP | SQL Server | Crystal Report
           </span>
         </h1>
+
+        <div className="border-2 text-widthGray"></div>
+
+
+
+
+          <div className="w-full py-4">
+            <div className="flex space-y-10 justify-center align-top md:space-x-10 md:flex-row md:text-left relative">
+              
+              {/* Company Logo */}
+              <div className="absolute left-10 top-0 flex justify-center items-center dark:bg-darkTheme rounded-md">
+                <Image
+                  src={ITM}
+                  alt="ITM Logo"
+                  width={180}
+                  height={50}
+                  className="rounded-md"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="text-left md:w-full pt-4 flex flex-col">
+                
+                <div className="text-gray-900 dark:text-white font-bold text-2xl py-2">
+                  .NET Developer
+                </div>
+
+                <span className="font-bold text-gray-900 dark:text-white">
+                  ITM (Agency) • Client: Toyota Motor Philippines
+                </span>
+
+                <span className="font-normal italic text-description-light dark:text-description-dark mt-1">
+                  November 2025 – Present
+                </span>
+
+                <ul className="mt-4 space-y-3 text-description-light dark:text-description-dark">
+
+                  <li>
+                    Assigned as a <b>.NET Developer</b> through ITM, currently
+                    onboarding and adapting to the development standards and workflows of
+                    Toyota Motor Philippines.
+                  </li>
+
+                  <li>
+                    <b className="text-gray-900 dark:text-white">Current Responsibilities:</b>
+                    <ul className="ml-5 mt-2 space-y-1 list-disc">
+                      <li>
+                        Assisted in the development and maintenance of existing
+                        <b> .NET / ASP.NET Core</b> applications
+                      </li>
+                      <li>
+                        Worked with <b>SQL Server</b> by creating and modifying stored procedures
+                      </li>
+                      <li>
+                        Supported backend development using <b>C#</b> by implementing small
+                        features, fixes, and enhancements
+                      </li>
+                      <li>
+                        Participated in website-related development tasks within the existing
+                        codebase
+                      </li>
+                      <li>
+                        Used <b>Azure DevOps</b> for source control, task tracking, and basic
+                        deployment processes
+                      </li>
+                      <li>
+                        Actively learning system architecture, coding standards, and internal
+                        workflows used by the team
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+
+
+        {/* End */}
+        <h1 className="pt-10 font-bold text-1xl text-primaryColor dark:text-secondaryColor md:p-6 p-8">
+          Core Technologies:{" "}
+          <span className="text-grayColor font-semibold dark:text-whiteColor">
+            .NET / ASP.NET Core | C# | SQL Server | Azure DevOps 
+          </span>
+        </h1>
+        <div className="border-2 text-widthGray"></div>
       </div>
     </motion.section>
   );
