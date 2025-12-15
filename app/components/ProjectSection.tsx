@@ -50,6 +50,16 @@ const ProjectsSection = () => {
                   <p className="text-md leading-7 mb-4 text-description-light dark:text-description-dark">
                     {project.description}
                   </p>
+                  <div>
+                    {project.technologies.map((tech, techIdx) => (
+                      <span
+                        key={techIdx}
+                        className="inline-block bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-2 py-1 mr-2 mb-2 rounded mt-2 border border-gray-200 "
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                   <Link
                     href={{ pathname: "/pages/", query: { id: project.id } }}
                     className="block w-full relative z-10"
