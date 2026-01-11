@@ -30,7 +30,7 @@ const HeroSection = () => {
           </span>{" "}
           —
         </h1>
-        <h2 className="text-3xl">Software Developer</h2>
+        <h2 className="text-3xl">.NET Developer</h2>
         <hr className="w-full border-t-2 dark:border-secondaryColor my-4" />
         <p className="text-md">PHP · C# · .NET · React · TypeScript</p>
         <div className="flex items-center justify-center space-x-4">

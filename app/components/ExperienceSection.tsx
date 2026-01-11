@@ -150,25 +150,22 @@ const ExperienceSection = () => {
                   </b>
                   <ul className="ml-5 mt-2 space-y-1 list-disc">
                     <li>
-                      Onboarded to existing <b> .NET / ASP.NET Core</b>{" "}
-                      applications by learning project business flows and
-                      development standards
+                      Developed report-generation features for a Production
+                      Scheduling System using <b> .NET / ASP.NET Core</b>
                     </li>
                     <li>
-                      Developing assigned report-generation features within the
-                      existing codebase
+                      Migrated data access from direct Razor Page–to–database
+                      calls to an <b>API-based architecture</b>
                     </li>
                     <li>
-                      Created and modified <b>SQL Server</b> stored procedure
-                      to support reporting and application requirements
+                      Created and modified <b>SQL Server</b> stored procedure to
+                      support reporting and application requirements
                     </li>
                     <li>
-                      Used Azure DevOps for source control, task tracking, and
-                      basic deployment activities
+                      Used <b>Azure DevOps</b> for source control, work item tracking, and CI/CD pipelines
                     </li>
                     <li>
-                      Followed internal coding standards and workflows during
-                      development
+                      Worked in accordance with Toyota Motor Philippines development standards
                     </li>
                   </ul>
                 </li>
@@ -181,7 +178,7 @@ const ExperienceSection = () => {
         <h1 className="pt-10 font-bold text-1xl text-primaryColor dark:text-secondaryColor md:p-6 p-8">
           Core Technologies:{" "}
           <span className="text-grayColor font-semibold dark:text-whiteColor">
-            .NET / ASP.NET Core | C# | SQL Server | Azure DevOps
+            .NET / ASP.NET Core | C# | SQL Server | Azure DevOps | Razor
           </span>
         </h1>
         <div className="border-2 text-widthGray"></div>
