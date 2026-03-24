@@ -150,7 +150,7 @@ const ExperienceSection = () => {
                   </b>
                   <ul className="ml-5 mt-2 space-y-1 list-disc">
                     <li>
-                      Developed report-generation features for a Production
+                      Developed report-generation features and production sequence for a Production
                       Scheduling System using <b> .NET / ASP.NET Core</b>
                     </li>
                     <li>

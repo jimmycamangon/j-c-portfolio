@@ -1,28 +1,27 @@
 # About Me
 
-Hello! I'm Jimmy Camangon, a Programmer with a passion for creating innovative and user-friendly web applications. I'm dedicated to continuous learning and strive to contribute to the world of technology through my coding skills. Below, you'll find an overview of my skillset and a bit about me.
+Hello! I'm Jimmy Camangon, a Programmer that is passionate about code since Senior High (ICT). I build scalable solutions, solve real problems, and turn ideas into efficient reliable software. Now shipping robust software that just works.~
 
 ## Skills
 
 ### Programming Languages
 
-- JavaScript (beginner)
-- HTML5 (beginner)
-- CSS3 (beginner)
-- PHP (beginner)
-- C# (beginner)
+- JavaScript (Intermediate)
+- PHP (Intermediate)
+- C# (Intermediate)
 
 
 ### Front-End Development
 
 - React.js (beginner)
-- HTML5/CSS3 (beginner)
-- Responsive Web Design (beginner)
-- UI/UX Design Principles (beginner)
+- HTML5/CSS3 (Intermediate)
+- Responsive Web Design (Intermediate)
+- UI/UX Design Principles (Intermediate)
 
-### Back-End Development
+### Database
 
-- Database Management (MYSQL) (beginner)
+- MySQL (Intermediate)
+- SQL Server (Intermediate)
 
 ### Tools and Technologies
 
@@ -32,13 +31,10 @@ Hello! I'm Jimmy Camangon, a Programmer with a passion for creating innovative a
 - NPM/Yarn Package Management
 - Webpack and Babel
 
-### Other
-
-- Basic UI/UX Design Concepts
 
 ## Contact
 
-Feel free to reach out to me via [LinkedIn](https://www.linkedin.com/in/jimmy-c-89b41918b/) to connect, collaborate, or just have a chat about technology and coding. I'm always excited to learn and grow in the tech community.
+Feel free to reach out to me via [LinkedIn](https://www.linkedin.com/in/jimmy-c-89b41918b/) to connect, collaborate, or just have a chat about technology and coding.
 
 Thank you for taking the time to learn a bit about me and my journey in the world of software engineering!
 
