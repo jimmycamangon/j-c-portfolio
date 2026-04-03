@@ -1,6 +1,40 @@
 import { Project } from "./type";
 
 const projects: Project[] = [
+    {
+    name: "TuloyLang",
+    description:
+      "A simple web app that helps users stay consistent with their habits, workouts, and daily progress. Everything is kept in one place, so it’s easier to see how things are going without needing a complicated system.",
+    image: "/TL_LandPage.jpg",
+    problem:
+      "It’s easy for personal tracking to feel messy. Habits, workouts, and progress often end up scattered across different apps or notes, and some tools feel too heavy for something you just want to use every day.",
+    solution: [
+      "Keeps habits, workouts, and progress in one place",
+      "Makes daily tracking simpler and easier to maintain",
+      "Gives users a clearer view of their streaks, activity, and overall progress",
+      "Works directly in the browser without needing an account",
+      "Lets users export and restore their data for added peace of mind",
+    ],
+    projectUrl: "https://tuloylang-web.vercel.app/",
+    screenshots: [
+      "/TL_FeaturesPage.jpg",
+      "/TL_PreviewPage.jpg",
+      "/TL_StartPage.jpg",
+      "/TL_DashboardPage.jpg",
+      "/TL_HabitsPage.jpg",
+      "/TL_WorkoutPage.jpg",
+      "/TL_SettingsPage.jpg",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "LocalStorage",
+      "ESLint",
+    ],
+    id: 1,
+  },
   {
     name: "LEMS-AMS(La Mesa Elementary School - Attendance Monitoring System)",
     description:
@@ -38,7 +72,7 @@ const projects: Project[] = [
       "CHART JS",
       "ClickSend API",
     ],
-    id: 1,
+    id: 2,
   },
   {
     name: "DACCS (Digital Application of Certification and Clearance System)",
@@ -77,7 +111,7 @@ const projects: Project[] = [
       "CHART JS",
       "API (TWILIO)",
     ],
-    id: 2,
+    id: 3,
   },
   {
     name: "QRS (Queue Reservation System)",
@@ -101,7 +135,7 @@ const projects: Project[] = [
       "/QRS_Queue Page.JPG",
     ],
     technologies: ["PHP", "MYSQL", "HTML", "CSS", "JAVASCRIPT", "AJAX"],
-    id: 3,
+    id: 4,
   },
   {
     name: "NM-AMS (North Marinig-Attendance Monitoring System)",
@@ -135,7 +169,7 @@ const projects: Project[] = [
       "PUSHER JS",
       "API (TWILIO)",
     ],
-    id: 4,
+    id: 5,
   },
   {
     name: "Voting System",
@@ -169,7 +203,7 @@ const projects: Project[] = [
       "BOOTSTRAP",
       "JAVASCRIPT",
     ],
-    id: 5,
+    id: 6,
   },
 ];
 

@@ -4,7 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import projects from "../components/projects";
 import Image from "next/image";
 import Footer from "../components/Footer";
-import { FaArrowLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaArrowLeft, FaChevronLeft, FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
@@ -64,6 +64,24 @@ const DisplayProject: React.FC = () => {
           <h2 className="font-bold text-center text-3xl text-primaryColor dark:text-secondaryColor py-2">
             {project.name}
           </h2>
+          <div className="flex justify-center py-3">
+            {project.projectUrl ? (
+              <a
+                href={project.projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${project.name} online`}
+                title="Open project link"
+                className="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-primaryColor text-primaryColor transition-all duration-300 hover:border-blue-700 hover:text-blue-700 dark:border-secondaryColor dark:text-secondaryColor dark:hover:border-blue-400 dark:hover:text-blue-400"
+              >
+                <FaExternalLinkAlt className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            ) : (
+              <p className="text-sm text-description-light dark:text-description-dark">
+                Project is not available online.
+              </p>
+            )}
+          </div>
           <div className="border-b border-gray-400 pb-3 text-sm py-10">
             <span className="font-bold text-lg text-primaryColor dark:text-secondaryColor">
               Problem:

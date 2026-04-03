@@ -7,4 +7,5 @@ export type Project = {
     image: string;
     screenshots: string[];
     technologies: string[];
+    projectUrl?: string;
   };
