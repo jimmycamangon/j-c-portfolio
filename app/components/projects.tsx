@@ -1,6 +1,40 @@
 import { Project } from "./type";
 
 const projects: Project[] = [
+   {
+    name: "Tantiya",
+    description:
+      "Tantiya is a budget tracker built for real salary cutoffs, recurring bills, and quick daily spending.",
+    image: "/TANTIYA_LandPage_v2.jpg",
+    problem:
+      "Many people receive income by cutoff and manage bills with different due dates, but most budget tools feel too heavy, too manual, or do not match real-life payroll flow.",
+    solution: [
+      "Tracks budget by month or by cutoff",
+      "Lets users log spending quickly through tap-based amounts",
+      "Shows remaining budget in real time",
+      "Supports recurring bills, housing payments, and payroll deductions",
+      "Allows backup and restore so users can keep their records safe",
+    ],
+    projectUrl: "https://tantiya-web.vercel.app/",
+    screenshots: [
+      "/TANTIYA_StartPage.jpg",
+      "/TANTIYA_DashboardPage.jpg",
+      "/TANTIYA_DeductPage.jpg",
+      "/TANTIYA_IncomePage.jpg",
+      "/TANTIYA_CutOffPage.jpg",
+      "/TANTIYA_AnalysisPage.jpg",
+      "/TANTIYA_HistoryPage.jpg",
+      "/TANTIYA_SettingsPage.jpg",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "LocalStorage",
+    ],
+    id: 1,
+  },
     {
     name: "TuloyLang",
     description:
@@ -33,7 +67,7 @@ const projects: Project[] = [
       "LocalStorage",
       "ESLint",
     ],
-    id: 1,
+    id: 2,
   },
   {
     name: "LEMS-AMS(La Mesa Elementary School - Attendance Monitoring System)",
@@ -72,7 +106,7 @@ const projects: Project[] = [
       "CHART JS",
       "ClickSend API",
     ],
-    id: 2,
+    id: 3,
   },
   {
     name: "DACCS (Digital Application of Certification and Clearance System)",
@@ -111,7 +145,7 @@ const projects: Project[] = [
       "CHART JS",
       "API (TWILIO)",
     ],
-    id: 3,
+    id: 4,
   },
   {
     name: "QRS (Queue Reservation System)",
@@ -135,7 +169,7 @@ const projects: Project[] = [
       "/QRS_Queue Page.JPG",
     ],
     technologies: ["PHP", "MYSQL", "HTML", "CSS", "JAVASCRIPT", "AJAX"],
-    id: 4,
+    id: 5,
   },
   {
     name: "NM-AMS (North Marinig-Attendance Monitoring System)",
@@ -169,7 +203,7 @@ const projects: Project[] = [
       "PUSHER JS",
       "API (TWILIO)",
     ],
-    id: 5,
+    id: 6,
   },
   {
     name: "Voting System",
@@ -203,7 +237,7 @@ const projects: Project[] = [
       "BOOTSTRAP",
       "JAVASCRIPT",
     ],
-    id: 6,
+    id: 7,
   },
 ];
 
