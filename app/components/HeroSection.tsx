@@ -34,34 +34,20 @@ const HeroSection = () => {
         <hr className="w-full border-t-2 dark:border-secondaryColor my-4" />
         <p className="text-md">PHP · C# · .NET · React · TypeScript</p>
         <div className="flex items-center justify-center space-x-4">
-          <Link
-            to="projects"
-            smooth={true}
-            offset={-100}
-            duration={500}
-            className="cursor-pointer transition-transform hover:translate-y-[-5px] text-3xl"
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-
-            <motion.div
-              animate={{
-                y: [0, 10, 0], 
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity, 
-              }}
+            <Link
+              to="projects"
+              smooth={true}
+              offset={-100}
+              duration={500}
+              className="cursor-pointer text-4xl"
             >
-              <Link
-                to="projects"
-                smooth={true}
-                offset={-100}
-                duration={500}
-                className="cursor-pointer text-4xl "
-              >
-                <FaCaretDown title={"Projects"} />
-              </Link>
-            </motion.div>
-          </Link>
+              <FaCaretDown title={"Projects"} />
+            </Link>
+          </motion.div>
         </div>
       </motion.div>
 

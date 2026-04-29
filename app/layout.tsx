@@ -7,13 +7,34 @@ import ClientWrapper from './components/ClientWrapper';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Jims',
-    description: 'My Portfolio',
+    title: 'Jimmy Camangon | .NET Developer',
+    description: 'Portfolio of Jimmy Camangon — .NET Developer specializing in C#, PHP, ASP.NET Core, React, and SQL Server.',
+    openGraph: {
+        title: 'Jimmy Camangon | .NET Developer',
+        description: 'Portfolio of Jimmy Camangon — .NET Developer specializing in C#, PHP, ASP.NET Core, React, and SQL Server.',
+        url: 'https://jimmycamangon.vercel.app',
+        siteName: 'Jimmy Camangon Portfolio',
+        images: [
+            {
+                url: '/J-C Avatar.png',
+                width: 800,
+                height: 800,
+                alt: 'Jimmy Camangon',
+            },
+        ],
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary',
+        title: 'Jimmy Camangon | .NET Developer',
+        description: 'Portfolio of Jimmy Camangon — .NET Developer specializing in C#, PHP, ASP.NET Core, React, and SQL Server.',
+        images: ['/J-C Avatar.png'],
+    },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <head>
                 {/* Favicon */}
                 <link rel="icon" href="/j-c-logo-v2.png" />

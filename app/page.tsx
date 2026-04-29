@@ -36,23 +36,25 @@ export default function Home() {
     if (!mounted) return null;
 
     return (
-        <div className={showIntro ? 'bg-lightTheme dark:bg-darkTheme' : ''}>
-            {showIntro ? (
-                <IntroScreen onFinish={handleIntroFinish} />
-            ) : (
-                <ThemeProvider enableSystem={true} attribute="class">
-                    <Navbar />
-                    <main className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl overflow-x-hidden">
-                        <HeroSection />
-                        <ProjectsSection />
-                        <ExperienceSection />
-                        <AboutSection />
-                        <ContactSection />
-                        <Footer />
-                        <ScrollToTopButton />
-                    </main>
-                </ThemeProvider>
-            )}
-        </div>
+        <ThemeProvider enableSystem={true} attribute="class">
+            <div className={showIntro ? 'bg-lightTheme dark:bg-darkTheme' : ''}>
+                {showIntro ? (
+                    <IntroScreen onFinish={handleIntroFinish} />
+                ) : (
+                    <>
+                        <Navbar />
+                        <main className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl overflow-x-hidden">
+                            <HeroSection />
+                            <ProjectsSection />
+                            <ExperienceSection />
+                            <AboutSection />
+                            <ContactSection />
+                            <Footer />
+                            <ScrollToTopButton />
+                        </main>
+                    </>
+                )}
+            </div>
+        </ThemeProvider>
     );
 }

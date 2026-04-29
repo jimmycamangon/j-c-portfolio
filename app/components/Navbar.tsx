@@ -152,7 +152,7 @@ const Navbar = () => {
                     activeClass="!text-primaryColor dark:!text-secondaryColor after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primaryColor dark:after:bg-secondaryColor"
                     spy={true}
                     smooth={true}
-                    offset={-50}
+                    offset={-200}
                     duration={500}
                     spyThrottle={100}
                     onClick={() => setNavbar(false)}
