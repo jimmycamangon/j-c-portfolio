@@ -1,41 +1,45 @@
 import { Project } from "./type";
 
 const projects: Project[] = [
-   {
+  {
     name: "Tantiya",
     description:
-      "Tantiya is a budget tracker built for real salary cutoffs, recurring bills, and quick daily spending.",
-    image: "/TANTIYA_LandPage_v2.jpg",
+      "Tantiya is an personal finance tracker designed to help users manage income, expenses, account balances, transfers, and recurring obligations in a simple and organized way.",
+    image: "/TANTIYAV2_LandPage.jpg",
     problem:
-      "Many people receive income by cutoff and manage bills with different due dates, but most budget tools feel too heavy, too manual, or do not match real-life payroll flow.",
+      "Most budgeting apps are either too complex or require cloud accounts and subscriptions. Managing salary-based income, recurring bills, and multiple accounts can become difficult when using spreadsheets or generic expense trackers.",
     solution: [
-      "Tracks budget by month or by cutoff",
-      "Lets users log spending quickly through tap-based amounts",
-      "Shows remaining budget in real time",
-      "Supports recurring bills, housing payments, and payroll deductions",
-      "Allows backup and restore so users can keep their records safe",
+      "Track income, expenses, transfers, and account balances",
+      "Manage recurring obligations and upcoming due dates",
+      "Calculate reserved funds for planned expenses",
+      "View spending summaries and financial insights through a dashboard",
+      "Search and filter transaction history by period and category",
+      "Export and import backups for easy data migration between devices",
     ],
-    projectUrl: "https://tantiya-web.vercel.app/",
+    projectUrl: "https://tantiya-web-v2.vercel.app/",
     screenshots: [
-      "/TANTIYA_StartPage.jpg",
-      "/TANTIYA_DashboardPage.jpg",
-      "/TANTIYA_DeductPage.jpg",
-      "/TANTIYA_IncomePage.jpg",
-      "/TANTIYA_CutOffPage.jpg",
-      "/TANTIYA_AnalysisPage.jpg",
-      "/TANTIYA_HistoryPage.jpg",
-      "/TANTIYA_SettingsPage.jpg",
+      "/TANTIYAV2_LandPage.jpg",
+      "/TANTIYAV2_Dashboard.jpg",
+      "/TANTIYAV2_Guide.jpg",
+      "/TANTIYAV2_AccountPage.jpg",
+      "/TANTIYAV2_CategoriesPage.jpg",
+      "/TANTIYAV2_ExpensePage.jpg",
+      "/TANTIYAV2_IncomesPage.jpg",
+      "/TANTIYAV2_TransfersPage.jpg",
+      "/TANTIYAV2_ObligationsPage.jpg",
+      "/TANTIYAV2_SettingsPage.jpg",
     ],
     technologies: [
       "React",
       "TypeScript",
       "Vite",
       "Tailwind CSS",
-      "LocalStorage",
+      "Dexie.js",
+      "IndexedDB",
     ],
     id: 1,
   },
-    {
+  {
     name: "TuloyLang",
     description:
       "A simple web app that helps users stay consistent with their habits, workouts, and daily progress. Everything is kept in one place, so it’s easier to see how things are going without needing a complicated system.",
