@@ -7,90 +7,94 @@ import { Project } from "./type";
 import projects from "./projects";
 
 const ProjectsSection = () => {
-  const ref = useRef(null); 
-  const isInView = useInView(ref, { once: true }); 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   return (
     <motion.section
       id="projects"
-      ref={ref} 
-      initial={{ opacity: 0, y: 50 }} 
-      animate={isInView ? { opacity: 1, y: 0 } : {}} 
-      transition={{ duration: 0.5 }} 
-      className="min-h-screen flex flex-col py-16 md:py-32"
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col py-24 md:py-32"
     >
-      <h1 className="text-left font-bold text-3xl text-gray-900 dark:text-white">
+      <h1 className="text-left font-bold text-3xl text-gray-900 dark:text-white mb-3">
         Projects
-        <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
       </h1>
+      <div className="w-6 h-0.5 bg-primaryColor mb-12 rounded-full" />
 
-      <div className="flex-grow space-y-12 mt-4">
-        {projects.map((project: Project, idx: number) => {
-          const isOdd = idx % 2 !== 0;
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {projects.map((project: Project, idx: number) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.4, delay: idx * 0.1 }}
+            className="group rounded-xl border border-widthGray dark:border-grayColor/30 overflow-hidden hover:shadow-lg transition-all duration-300"
+          >
+            {/* Image */}
+            <div className="overflow-hidden h-48">
+              <Image
+                src={project.image}
+                alt={project.name}
+                width={800}
+                height={400}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
 
-          return (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, x: isOdd ? 50 : -50 }} 
-              animate={isInView ? { opacity: 1, x: 0 } : {}} 
-              transition={{ duration: 0.5, delay: idx * 0.2 }} 
-            >
-              <div className="flex flex-col md:flex-row md:space-x-12">
-                <div className="md:w-1/2 flex items-center">
-                  <Image
-                    src={project.image}
-                    alt=""
-                    width={1000}
-                    height={1000}
-                    className="rounded-xl shadow-xl"
-                  />
-                </div>
-                <div className="mt-8 md:w-1/2">
-                  <h1 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{project.name}</h1>
-                  <p className="text-md leading-7 mb-4 text-description-light dark:text-description-dark">
-                    {project.description}
-                  </p>
-                  <div>
-                    {project.technologies.map((tech, techIdx) => (
-                      <span
-                        key={techIdx}
-                        className="inline-block bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-2 py-1 mr-2 mb-2 rounded mt-2 border border-gray-200 "
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex flex-row flex-wrap items-center gap-3 mt-4">
-                    <Link
-                      href={{ pathname: "/pages/", query: { id: project.id } }}
-                      className="group text-primaryColor dark:text-secondaryColor hover:text-blue-700 dark:hover:text-blue-400 px-4 py-2 rounded-md inline-flex items-center justify-center space-x-3 transition-all duration-300 border border-primaryColor dark:border-secondaryColor hover:border-blue-700 dark:hover:border-blue-400 bg-transparent relative z-10"
-                    >
-                      <span className="text-sm font-normal">View Details</span>
-                      <FaArrowRight className="transform group-hover:translate-x-2 transition-transform duration-300" />
-                    </Link>
+            {/* Content */}
+            <div className="p-5 flex flex-col gap-3">
+              <h2 className="font-bold text-lg text-gray-900 dark:text-white leading-snug">
+                {project.name}
+              </h2>
 
-                    {project.projectUrl ? (
-                      <a
-                        href={project.projectUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Open ${project.name} online`}
-                        title="Open project link"
-                        className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-primaryColor text-primaryColor transition-all duration-300 hover:border-blue-700 hover:text-blue-700 dark:border-secondaryColor dark:text-secondaryColor dark:hover:border-blue-400 dark:hover:text-blue-400"
-                      >
-                        <FaExternalLinkAlt className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                      </a>
-                    ) : (
-                      <p className="text-sm text-description-light dark:text-description-dark">
-                        Project is not available online.
-                      </p>
-                    )}
-                  </div>
-                </div>
+              <p className="text-base text-description-light dark:text-description-dark leading-relaxed line-clamp-2">
+                {project.description}
+              </p>
+
+              {/* Tech pills */}
+              <div className="flex flex-wrap gap-1.5">
+                {project.technologies.map((tech, techIdx) => (
+                  <span
+                    key={techIdx}
+                    className="text-xs px-2.5 py-0.5 rounded-full border border-primaryColor/40 text-primaryColor dark:border-secondaryColor/30 dark:text-secondaryColor"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
-            </motion.div>
-          );
-        })}
+
+              {/* Actions */}
+              <div className="flex items-center gap-3 pt-1">
+                <Link
+                  href={{ pathname: "/pages/", query: { id: project.id } }}
+                  className="group/btn inline-flex items-center gap-2 text-sm text-primaryColor dark:text-secondaryColor border border-primaryColor dark:border-secondaryColor px-4 py-1.5 rounded-full hover:bg-primaryColor hover:text-whiteColor dark:hover:bg-secondaryColor dark:hover:text-textDark transition-all duration-200"
+                >
+                  View Details
+                  <FaArrowRight className="text-xs group-hover/btn:translate-x-1 transition-transform duration-200" />
+                </Link>
+
+                {project.projectUrl ? (
+                  <a
+                    href={project.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${project.name} online`}
+                    className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-primaryColor text-primaryColor dark:border-secondaryColor dark:text-secondaryColor hover:bg-primaryColor hover:text-whiteColor dark:hover:bg-secondaryColor dark:hover:text-textDark transition-all duration-200"
+                  >
+                    <FaExternalLinkAlt className="text-xs" />
+                  </a>
+                ) : (
+                  <span className="text-sm italic text-description-light dark:text-description-dark">
+                    Not available online
+                  </span>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </motion.section>
   );
