@@ -25,7 +25,7 @@ const experiences: Experience[] = [
       "Created and modified SQL Server stored procedures to support reporting and application requirements",
       "Used Azure DevOps for source control, work item tracking, and CI/CD pipelines",
     ],
-    tech: [".NET", "ASP.NET Core", "C#", "SQL Server", "Azure DevOps", "Razor"],
+    tech: [".NET", "ASP.NET Core", "C#", "SQL Server", "Azure DevOps", "Razor", "React"],
   },
   {
     role: "Programmer",
