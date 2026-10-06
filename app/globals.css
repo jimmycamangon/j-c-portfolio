@@ -13,17 +13,49 @@ html {
 }
 
 @layer base {
+  /* Light: cool paper + deep cyan */
   :root {
-    --gradient-overlay: radial-gradient(circle, #f5f7fa, #c3cfe2);
+    --bg: 244 247 251;
+    --surface: 255 255 255;
+    --line: 218 226 236;
+    --fg: 11 18 32;
+    --muted: 91 107 130;
+    --accent: 8 131 178;
   }
 
-  [data-theme="dark"] {
-    --gradient-overlay: radial-gradient(circle, #10111A, #000000);
+  /* Dark: midnight navy + ice cyan */
+  .dark {
+    --bg: 6 10 19;
+    --surface: 12 18 32;
+    --line: 27 37 56;
+    --fg: 228 236 247;
+    --muted: 128 143 167;
+    --accent: 103 232 249;
   }
 
   body {
-    @apply dark:bg-darkTheme bg-lightTheme p-0;
+    @apply bg-bg text-fg text-sm antialiased p-0;
     font-family: "Satoshi", "Inter", sans-serif;
+  }
+
+  /* Faint grid + accent glow behind everything */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(60% 45% at 50% 0%, rgb(var(--accent) / 0.1), transparent 70%),
+      linear-gradient(rgb(var(--line) / 0.45) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--line) / 0.45) 1px, transparent 1px);
+    background-size: 100% 100%, 56px 56px, 56px 56px;
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
+    mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  }
+
+  ::selection {
+    background: rgb(var(--accent) / 0.25);
   }
 }
 

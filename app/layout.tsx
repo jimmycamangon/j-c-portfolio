@@ -1,10 +1,10 @@
 // filepath: d:\JimFiles\j-c-portfolio\j-c-portfolio\app\layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { JetBrains_Mono } from 'next/font/google';
 import ClientWrapper from './components/ClientWrapper';
 
-const inter = Inter({ subsets: ['latin'] });
+const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
     title: 'Jimmy Camangon | .NET Developer',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" className={mono.variable} suppressHydrationWarning>
             <head>
                 {/* Favicon */}
                 <link rel="icon" href="/j-c-logo-v2.png" />

@@ -37,13 +37,13 @@ export default function Home() {
 
     return (
         <ThemeProvider enableSystem={true} attribute="class">
-            <div className={showIntro ? 'bg-lightTheme dark:bg-darkTheme' : ''}>
+            <div>
                 {showIntro ? (
                     <IntroScreen onFinish={handleIntroFinish} />
                 ) : (
                     <>
                         <Navbar />
-                        <main className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl overflow-x-hidden">
+                        <main className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl overflow-x-clip">
                             <HeroSection />
                             <ExperienceSection />
                             <ProjectsSection />

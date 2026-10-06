@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 import { BiLogoGmail, BiLogoLinkedinSquare, BiLogoGithub } from "react-icons/bi";
 import Link from "next/link";
 
@@ -40,19 +41,16 @@ const ContactSection = () => {
       transition={{ duration: 0.5 }}
       className="flex flex-col py-24 md:py-32"
     >
-      <h1 className="text-left font-bold text-3xl text-gray-900 dark:text-white mb-3">
-        Contact
-      </h1>
-      <div className="w-6 h-0.5 bg-primaryColor mb-12 rounded-full" />
+      <SectionHeading>Contact</SectionHeading>
 
-      <p className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+      <p className="text-lg font-bold tracking-tight text-fg mb-1.5">
         Collab? Sure. Need code? Done.
       </p>
-      <p className="text-base text-description-light dark:text-description-dark mb-10">
+      <p className="text-sm text-muted mb-10">
         I&apos;m all in — sleep is optional.
       </p>
 
-      <div className="w-full h-px bg-widthGray dark:bg-grayColor/30 mb-10" />
+      <div className="w-full h-px bg-line mb-10" />
 
       <div className="flex flex-col gap-3">
         {contacts.map((contact, idx) => {
@@ -68,16 +66,16 @@ const ContactSection = () => {
                 href={contact.href}
                 target={contact.external ? "_blank" : undefined}
                 rel={contact.external ? "noopener noreferrer" : undefined}
-                className="group flex items-center gap-4 p-4 rounded-xl border border-widthGray dark:border-grayColor/30 hover:border-primaryColor dark:hover:border-secondaryColor transition-all duration-200 hover:shadow-md"
+                className="group flex items-center gap-4 px-4 py-3 rounded-xl border border-line bg-surface/60 hover:border-accent/60 transition-colors duration-200"
               >
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primaryColor/10 dark:bg-secondaryColor/10 text-primaryColor dark:text-secondaryColor shrink-0 group-hover:bg-primaryColor group-hover:text-whiteColor dark:group-hover:bg-secondaryColor dark:group-hover:text-textDark transition-all duration-200">
-                  <Icon className="text-xl" />
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-accent/10 text-accent shrink-0 group-hover:bg-accent group-hover:text-bg transition-all duration-200">
+                  <Icon className="text-base" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-primaryColor dark:text-secondaryColor">
+                  <span className="font-mono text-2xs uppercase tracking-[0.2em] text-accent">
                     {contact.label}
                   </span>
-                  <span className="text-base text-description-light dark:text-description-dark group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-200">
+                  <span className="text-sm text-muted group-hover:text-fg transition-colors duration-200">
                     {contact.value}
                   </span>
                 </div>

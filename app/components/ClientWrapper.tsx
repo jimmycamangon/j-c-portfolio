@@ -6,6 +6,9 @@ import ThemeProviderWrapper from "./ThemeProviderWrapper";
 
 const ClientWrapper = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
+        // Reveal the page on every route (html is hidden until this class is set)
+        document.documentElement.classList.add("loaded");
+
         const ripple = document.getElementById("ripple");
 
         const handleMouseMove = (e: MouseEvent) => {
@@ -27,7 +30,7 @@ const ClientWrapper = ({ children }: { children: React.ReactNode }) => {
     return (
         <ThemeProviderWrapper>
             {/* Ripple Cursor */}
-            <div id="ripple" className="fixed w-4 h-4 bg-primaryColor rounded-full pointer-events-none"></div>
+            <div id="ripple" className="fixed w-4 h-4 bg-accent rounded-full pointer-events-none"></div>
             {children}
         </ThemeProviderWrapper>
     );

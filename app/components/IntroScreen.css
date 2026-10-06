@@ -63,22 +63,23 @@
 }
 
 .intro-text {
-    font-size: 6rem;
-    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
     text-align: center;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* Responsive font sizes */
 @media (max-width: 768px) {
     .intro-text {
-        font-size: 3rem;
+        font-size: 1.125rem;
     }
 }
 
 @media (max-width: 480px) {
     .intro-text {
-        font-size: 2.5rem;
+        font-size: 0.875rem;
     }
 }
 

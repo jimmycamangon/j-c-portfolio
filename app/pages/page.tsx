@@ -63,13 +63,13 @@ const DisplayProject: React.FC = () => {
 
   if (project) {
     return (
-      <div className="min-h-screen bg-lightTheme dark:bg-darkTheme">
+      <div className="min-h-screen">
 
         {/* Back button */}
         <div className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl pt-8">
           <button
             onClick={() => router.back()}
-            className="group inline-flex items-center gap-2 text-sm text-primaryColor dark:text-secondaryColor hover:opacity-70 transition-opacity duration-200"
+            className="group inline-flex items-center gap-2 text-sm text-accent hover:opacity-70 transition-opacity duration-200"
           >
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform duration-200" />
             Back
@@ -81,7 +81,7 @@ const DisplayProject: React.FC = () => {
 
           {/* Title + external link */}
           <div className="mb-8">
-            <h2 className="font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-3">
+            <h2 className="font-bold text-2xl md:text-3xl tracking-tight text-fg mb-4">
               {project.name}
             </h2>
             <div className="flex items-center gap-3">
@@ -91,13 +91,13 @@ const DisplayProject: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Open ${project.name} online`}
-                  className="group inline-flex items-center gap-2 text-sm text-primaryColor dark:text-secondaryColor border border-primaryColor dark:border-secondaryColor px-4 py-1.5 rounded-full  hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-200 hover:shadow-md"
+                  className="group inline-flex items-center gap-2 text-xs text-accent border border-accent/50 px-3.5 py-1.5 rounded-full hover:bg-accent hover:text-bg transition-all duration-200"
                 >
                   <FaExternalLinkAlt className="text-xs group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-200" />
                   View Live
                 </a>
               ) : (
-                <span className="text-sm text-description-light dark:text-description-dark italic">
+                <span className="text-xs text-muted italic">
                   Not available online
                 </span>
               )}
@@ -105,27 +105,27 @@ const DisplayProject: React.FC = () => {
           </div>
 
           {/* Problem */}
-          <div className="mb-6 pl-4 border-l-2 border-primaryColor dark:border-secondaryColor">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primaryColor dark:text-secondaryColor mb-2">
+          <div className="mb-6 pl-4 border-l border-accent/60">
+            <p className="font-mono text-2xs uppercase tracking-[0.2em] text-accent mb-2">
               Problem
             </p>
-            <p className="text-description-light dark:text-description-dark leading-7">
+            <p className="text-muted leading-7">
               {project.problem}
             </p>
           </div>
 
           {/* Solution */}
-          <div className="mb-8 pl-4 border-l-2 border-primaryColor dark:border-secondaryColor">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primaryColor dark:text-secondaryColor mb-2">
+          <div className="mb-8 pl-4 border-l border-accent/60">
+            <p className="font-mono text-2xs uppercase tracking-[0.2em] text-accent mb-2">
               Solution
             </p>
             <ul className="space-y-2">
               {project.solution.map((feature, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-2 text-description-light dark:text-description-dark leading-7"
+                  className="flex items-start gap-2 text-muted leading-7"
                 >
-                  <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-primaryColor dark:bg-secondaryColor flex-shrink-0" />
+                  <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
                   {feature}
                 </li>
               ))}
@@ -134,14 +134,14 @@ const DisplayProject: React.FC = () => {
 
           {/* Tech stack */}
           <div className="mb-12">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primaryColor dark:text-secondaryColor mb-3">
+            <p className="font-mono text-2xs uppercase tracking-[0.2em] text-accent mb-3">
               Technologies
             </p>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech, index) => (
                 <span
                   key={index}
-                  className="text-xs px-3 py-1 rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400"
+                  className="text-2xs px-2 py-0.5 rounded-md border border-line text-muted font-mono"
                 >
                   {tech}
                 </span>
@@ -151,7 +151,7 @@ const DisplayProject: React.FC = () => {
 
           {/* Screenshots */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-primaryColor dark:text-secondaryColor mb-6">
+            <p className="font-mono text-2xs uppercase tracking-[0.2em] text-accent mb-6">
               Screenshots
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -159,7 +159,7 @@ const DisplayProject: React.FC = () => {
                 <div
                   key={index}
                   onClick={() => handleImageClick(screenshot, index)}
-                  className="group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+                  className="group cursor-pointer overflow-hidden rounded-lg border border-line hover:border-accent/50 transition-colors duration-300"
                 >
                   <Image
                     src={screenshot}
@@ -185,7 +185,7 @@ const DisplayProject: React.FC = () => {
             {/* Close */}
             <button
               onClick={handleCloseModal}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-textDark text-whiteColor dark:bg-whiteColor dark:text-textDark hover:opacity-80 hover:scale-110 transition-all duration-200 shadow-xl"
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-surface text-fg border border-line hover:text-accent hover:border-accent/60 transition-all duration-200"
             >
               <IoCloseSharp size={20} />
             </button>
@@ -199,10 +199,10 @@ const DisplayProject: React.FC = () => {
             <button
               onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}
               disabled={currentImageIndex === 0}
-              className={`hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-textDark text-whiteColor dark:bg-whiteColor dark:text-textDark shadow-xl transition-all duration-200 ${
+              className={`hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-surface text-fg border border-line transition-all duration-200 ${
                 currentImageIndex === 0
                   ? "opacity-30 cursor-not-allowed"
-                  : "hover:opacity-80 hover:scale-110"
+                  : "hover:text-accent hover:border-accent/60"
               }`}
             >
               <FaChevronLeft size={18} />
@@ -229,10 +229,10 @@ const DisplayProject: React.FC = () => {
             <button
               onClick={(e) => { e.stopPropagation(); handleNextImage(); }}
               disabled={currentImageIndex === project.screenshots.length - 1}
-              className={`hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-textDark text-whiteColor dark:bg-whiteColor dark:text-textDark shadow-xl transition-all duration-200 ${
+              className={`hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-surface text-fg border border-line transition-all duration-200 ${
                 currentImageIndex === project.screenshots.length - 1
                   ? "opacity-30 cursor-not-allowed"
-                  : "hover:opacity-80 hover:scale-110"
+                  : "hover:text-accent hover:border-accent/60"
               }`}
             >
               <FaChevronRight size={18} />
@@ -243,7 +243,7 @@ const DisplayProject: React.FC = () => {
               <button
                 onClick={handlePrevImage}
                 disabled={currentImageIndex === 0}
-                className={`p-3 rounded-full bg-textDark text-whiteColor dark:bg-whiteColor dark:text-textDark shadow-xl transition-all duration-200 ${
+                className={`p-3 rounded-full bg-surface text-fg border border-line transition-all duration-200 ${
                   currentImageIndex === 0 ? "opacity-30 cursor-not-allowed" : "active:scale-95"
                 }`}
               >
@@ -271,7 +271,7 @@ const DisplayProject: React.FC = () => {
               <button
                 onClick={handleNextImage}
                 disabled={currentImageIndex === project.screenshots.length - 1}
-                className={`p-3 rounded-full bg-textDark text-whiteColor dark:bg-whiteColor dark:text-textDark shadow-xl transition-all duration-200 ${
+                className={`p-3 rounded-full bg-surface text-fg border border-line transition-all duration-200 ${
                   currentImageIndex === project.screenshots.length - 1 ? "opacity-30 cursor-not-allowed" : "active:scale-95"
                 }`}
               >
@@ -305,11 +305,11 @@ const DisplayProject: React.FC = () => {
 
   // Not found fallback
   return (
-    <div className="min-h-screen bg-lightTheme dark:bg-darkTheme flex flex-col items-center justify-center gap-4">
-      <p className="text-2xl font-bold text-gray-900 dark:text-white">Project not found</p>
+    <div className="min-h-screen flex flex-col items-center justify-center gap-4">
+      <p className="text-lg font-bold text-fg">Project not found</p>
       <button
         onClick={() => router.back()}
-        className="inline-flex items-center gap-2 text-sm text-primaryColor dark:text-secondaryColor hover:opacity-70 transition-opacity"
+        className="inline-flex items-center gap-2 text-sm text-accent hover:opacity-70 transition-opacity"
       >
         <FaArrowLeft />
         Go back

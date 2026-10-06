@@ -12,25 +12,25 @@ module.exports = {
         'nav': '1300px',
       },
       fontFamily: {
-        sans: ['Satoshi', 'Inter', 'sans-serif'], 
+        sans: ['Satoshi', 'Inter', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
-      backgroundImage: {
-        darkTheme: 'radial-gradient(circle, #10111A, #000000)', // Dark gradient
-        lightTheme: 'radial-gradient(circle, #f5f7fa, #c3cfe2)', // Light gradient
+      fontSize: {
+        '2xs': ['0.6875rem', { lineHeight: '1rem' }],
       },
     },
+    // Values come from the CSS variables in globals.css (light on :root, dark on .dark)
     colors: {
-      primaryColor: '#0077B6',
-      secondaryColor: '#ecebeb',
-      grayColor: "#6b7280",
-      textGray: "#6b7280",
-      widthGray: "#D3D3D3",
-      textDark: "#000000",
-      whiteColor: "#fff",
-      description: {
-        light: "#41464c", // Gray-500 for light mode descriptions
-        dark: "#9ca3af"   // Gray-400 for dark mode descriptions
-      }
+      transparent: 'transparent',
+      current: 'currentColor',
+      white: '#fff',
+      black: '#000',
+      bg: 'rgb(var(--bg) / <alpha-value>)',
+      surface: 'rgb(var(--surface) / <alpha-value>)',
+      line: 'rgb(var(--line) / <alpha-value>)',
+      fg: 'rgb(var(--fg) / <alpha-value>)',
+      muted: 'rgb(var(--muted) / <alpha-value>)',
+      accent: 'rgb(var(--accent) / <alpha-value>)',
     },
   },
   plugins: [],

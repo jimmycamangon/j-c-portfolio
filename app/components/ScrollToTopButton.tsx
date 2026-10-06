@@ -30,11 +30,11 @@ const ScrollToTopButton = () => {
     <button
       className={`${
         isVisible ? "block" : "hidden"
-      } fixed bottom-4 right-4 p-3 rounded-full bg-primaryColor text-whiteColor dark:bg-lightTheme dark:text-textDark shadow-md focus:outline-none transition-transform hover:translate-y-[-5px]`}
+      } fixed bottom-4 right-4 p-2.5 rounded-full bg-surface text-muted border border-line hover:text-accent hover:border-accent/60 focus:outline-none transition-colors`}
       onClick={scrollToTop}
       style={{ zIndex: 100 }}
     >
-      <FaArrowUp className="text-whiteColor dark:text-textDark" />
+      <FaArrowUp className="text-xs" />
     </button>
   );
 };

@@ -3,6 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import AMSPEC from "../../public/logo-amspec.jpg";
 import ITM from "../../public/logo-itm.jpeg";
 import { motion, useInView } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 
 type Experience = {
   role: string;
@@ -47,10 +48,7 @@ const ExperienceSection = () => {
 
   return (
     <section id="experience" ref={ref} className="py-24 md:py-32">
-      <h2 className="font-bold text-3xl text-gray-900 dark:text-white mb-3">
-        Work Experience
-      </h2>
-      <div className="w-6 h-0.5 bg-primaryColor mb-12 rounded-full" />
+      <SectionHeading>Work Experience</SectionHeading>
 
       <div className="space-y-0">
         {experiences.map((exp, i) => (
@@ -63,9 +61,9 @@ const ExperienceSection = () => {
           >
             {/* Timeline column: dot + connecting line */}
             <div className="flex flex-col items-center">
-              <div className="mt-1.5 w-2.5 h-2.5 rounded-full bg-primaryColor shrink-0" />
+              <div className="mt-1.5 w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_rgb(var(--accent)/0.6)] shrink-0" />
               {i < experiences.length - 1 && (
-                <div className="w-0.5 flex-1 bg-widthGray dark:bg-grayColor mt-1 rounded-full" />
+                <div className="w-px flex-1 bg-line mt-2" />
               )}
             </div>
 
@@ -73,10 +71,10 @@ const ExperienceSection = () => {
             <div className="pb-12">
               {/* Role + date */}
               <div className="flex items-start justify-between gap-4 mb-2">
-                <span className="font-bold text-xl text-gray-900 dark:text-white leading-tight">
+                <span className="font-bold text-base text-fg leading-tight">
                   {exp.role}
                 </span>
-                <span className="text-sm text-description-light dark:text-description-dark whitespace-nowrap shrink-0 mt-1">
+                <span className="font-mono text-2xs text-muted whitespace-nowrap shrink-0 mt-1">
                   {exp.period}
                 </span>
               </div>
@@ -86,11 +84,11 @@ const ExperienceSection = () => {
                 <Image
                   src={exp.logo}
                   alt={exp.company}
-                  width={52}
-                  height={52}
-                  className="rounded-md object-contain shrink-0 border border-gray-200 dark:border-gray-700 p-0.5"
+                  width={36}
+                  height={36}
+                  className="rounded-md object-contain shrink-0 border border-line p-0.5"
                 />
-                <p className="text-base text-description-light dark:text-description-dark">
+                <p className="text-sm text-muted">
                   {exp.company}
                 </p>
               </div>
@@ -100,9 +98,9 @@ const ExperienceSection = () => {
                 {exp.highlights.map((point, j) => (
                   <li
                     key={j}
-                    className="flex items-start gap-2.5 text-base text-description-light dark:text-description-dark leading-relaxed"
+                    className="flex items-start gap-2.5 text-sm text-muted leading-relaxed"
                   >
-                    <span className="mt-[7px] w-1 h-1 rounded-full bg-primaryColor shrink-0" />
+                    <span className="mt-[7px] w-1 h-1 rounded-full bg-accent shrink-0" />
                     {point}
                   </li>
                 ))}
@@ -113,7 +111,7 @@ const ExperienceSection = () => {
                 {exp.tech.map((t, k) => (
                   <span
                     key={k}
-                    className="text-xs px-2.5 py-0.5 rounded-full border border-primaryColor/40 text-primaryColor dark:border-secondaryColor/30 dark:text-secondaryColor"
+                    className="text-2xs px-2 py-0.5 rounded-md border border-line text-muted font-mono"
                   >
                     {t}
                   </span>
