@@ -30,22 +30,22 @@ const HeroSection = () => {
           </span>{" "}
           —
         </h1>
-        <h2 className="text-3xl">.NET Developer</h2>
+        <h2 className="text-3xl">Software Developer</h2>
         <hr className="w-full border-t-2 dark:border-secondaryColor my-4" />
-        <p className="text-md">PHP · C# · .NET · React · TypeScript</p>
+        <p className="text-md">PHP · C# · .NET · React · TypeScript · .NET Core · Javascript</p>
         <div className="flex items-center justify-center space-x-4">
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             <Link
-              to="projects"
+              to="experience"
               smooth={true}
               offset={-100}
               duration={500}
               className="cursor-pointer text-4xl"
             >
-              <FaCaretDown title={"Projects"} />
+              <FaCaretDown title={"WorkExperience"} />
             </Link>
           </motion.div>
         </div>

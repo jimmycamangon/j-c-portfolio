@@ -17,12 +17,12 @@ const NAV_ITEMS: Array<NavItem> = [
     page: "home",
   },
   {
-    label: "Projects",
-    page: "projects",
-  },
-  {
     label: "Background",
     page: "experience",
+  },
+  {
+    label: "Projects",
+    page: "projects",
   },
   {
     label: "About",
@@ -66,36 +66,31 @@ const Navbar = () => {
     <>
       {/* Full screen overlay when nav is open on mobile */}
       <div
-        className={`fixed inset-0 transition-all duration-300 nav:hidden ${
-          navbar ? "opacity-100 visible" : "opacity-0 invisible"
-        } ${
-          currentTheme === "dark"
+        className={`fixed inset-0 transition-all duration-300 nav:hidden ${navbar ? "opacity-100 visible" : "opacity-0 invisible"
+          } ${currentTheme === "dark"
             ? "bg-darkTheme text-whiteColor"
             : "bg-lightTheme text-textDark"
-        }`}
+          }`}
         style={{ zIndex: 40 }}
       />
 
       <header
-        className={`fixed top-0 inset-x-0 nav:inset-x-auto nav:left-0 ${
-          navbar ? "h-screen" : "h-auto"
-        } nav:h-screen flex flex-col justify-between items-center p-4 z-50`}
+        className={`fixed top-0 inset-x-0 nav:inset-x-auto nav:left-0 ${navbar ? "h-screen" : "h-auto"
+          } nav:h-screen flex flex-col justify-between items-center p-4 z-50`}
       >
         {/* Top bar container for mobile */}
         <div
           className={`flex justify-between items-center w-full nav:block transition-all duration-300
-        ${
-          isScrolled && !navbar
-            ? "backdrop-blur-md bg-white/30 dark:bg-black/30 shadow-lg rounded-lg md:backdrop-blur-0 md:bg-transparent md:shadow-none md:rounded-none"
-            : ""
-        }
+        ${isScrolled && !navbar
+              ? "backdrop-blur-md bg-white/30 dark:bg-black/30 shadow-lg rounded-lg md:backdrop-blur-0 md:bg-transparent md:shadow-none md:rounded-none"
+              : ""
+            }
     `}
         >
           {/* Logo */}
           <div
-            className={`flex justify-start nav:justify-start transition-all duration-300 nav:w-48 nav:bg-gray-100 nav:dark:bg-gray-800 ${
-              navbar ? "bg-gray-100 dark:bg-gray-800" : ""
-            }`}
+            className={`flex justify-start nav:justify-start transition-all duration-300 nav:w-48 nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? "bg-gray-100 dark:bg-gray-800" : ""
+              }`}
           >
             <Link
               to="home"
@@ -128,20 +123,16 @@ const Navbar = () => {
 
         {/* Navigation in the middle */}
         <nav
-          className={`p-4 rounded-l-lg transition-all duration-300 ${
-            navbar ? "w-screen pointer-events-auto" : "w-16 pointer-events-none"
-          } nav:w-48 ${
-            !navbar && "bg-gray-100 dark:bg-gray-800"
-          } nav:bg-gray-100 nav:dark:bg-gray-800 nav:pointer-events-auto ${
-            navbar ? "opacity-100" : "opacity-0 nav:opacity-100"
-          } ${!navbar && "hidden nav:flex"}`}
+          className={`p-4 rounded-l-lg transition-all duration-300 ${navbar ? "w-screen pointer-events-auto" : "w-16 pointer-events-none"
+            } nav:w-48 ${!navbar && "bg-gray-100 dark:bg-gray-800"
+            } nav:bg-gray-100 nav:dark:bg-gray-800 nav:pointer-events-auto ${navbar ? "opacity-100" : "opacity-0 nav:opacity-100"
+            } ${!navbar && "hidden nav:flex"}`}
         >
           <div className="flex flex-col items-center space-y-8">
             {/* Navigation items - always visible on desktop, controlled by navbar state below 1300px */}
             <div
-              className={`flex flex-col items-center space-y-8 nav:opacity-100 nav:pointer-events-auto ${
-                navbar ? "opacity-100 mt-8" : "opacity-0 pointer-events-none"
-              } transition-opacity duration-300`}
+              className={`flex flex-col items-center space-y-8 nav:opacity-100 nav:pointer-events-auto ${navbar ? "opacity-100 mt-8" : "opacity-0 pointer-events-none"
+                } transition-opacity duration-300`}
             >
               {NAV_ITEMS.map((item, idx) => {
                 return (
@@ -168,11 +159,9 @@ const Navbar = () => {
 
         {/* Theme toggler at the bottom */}
         <div
-          className={`p-4 flex justify-start w-full nav:justify-start transition-all duration-300 nav:w-48 ${
-            !navbar && "bg-gray-100 dark:bg-gray-800"
-          } nav:bg-gray-100 nav:dark:bg-gray-800 ${
-            navbar ? "opacity-100" : "opacity-0 nav:opacity-100"
-          } ${!navbar && "hidden nav:flex"}`}
+          className={`p-4 flex justify-start w-full nav:justify-start transition-all duration-300 nav:w-48 ${!navbar && "bg-gray-100 dark:bg-gray-800"
+            } nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? "opacity-100" : "opacity-0 nav:opacity-100"
+            } ${!navbar && "hidden nav:flex"}`}
         >
           {currentTheme === "dark" ? (
             <button

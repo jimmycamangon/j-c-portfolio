@@ -16,16 +16,15 @@ type Experience = {
 const experiences: Experience[] = [
   {
     role: ".NET Developer",
-    company: "ITM (Agency) · Client: Toyota Motor Philippines",
+    company: "IT Managers Inc. (Agency) | Client: Toyota Motor Philippines",
     period: "Nov 2025 – Present",
     logo: ITM,
     highlights: [
-      "Developed report-generation features and production sequence for a Production Scheduling System using .NET / ASP.NET Core",
-      "Migrated data access from Razor Page–to–database calls to an API-based architecture",
-      "Created and modified SQL Server stored procedures to support reporting and application requirements",
-      "Used Azure DevOps for source control, work item tracking, and CI/CD pipelines",
+      "Delivered 10 modules on VIMS (Vehicle Import Management System), built with React, ASP.NET Core and SQL Server, covering shipment monitoring, cost reporting and dashboards",
+      "Wrote the endpoint that receives shipment data from another Toyota system into staging tables and moves it to the main ones, built and deployed on a short deadline to unblock another team",
+      "On the Production Scheduling System, wrote the sequence reports and the line-leveling logic for lot sequencing, and moved data access to an API layer",
     ],
-    tech: [".NET", "ASP.NET Core", "C#", "SQL Server", "Azure DevOps", "Razor", "React"],
+    tech: [".NET", "ASP.NET Core", "C#", "SQL Server", "Azure DevOps", "Razor", "React", "Javascript"],
   },
   {
     role: "Programmer",
