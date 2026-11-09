@@ -1,40 +1,58 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 import "./IntroScreen.css";
 
+const DURATION = 2600;
+
 const IntroScreen = ({ onFinish }: { onFinish: () => void }) => {
-    const [fadeState, setFadeState] = useState<'initial' | 'fadeIn' | 'fadeOut'>('initial');
-    const { theme, systemTheme } = useTheme();
-    const currentTheme = theme === "system" ? systemTheme : theme;
+    const [progress, setProgress] = useState(0);
+    const [leaving, setLeaving] = useState(false);
     const name = "Jimmy Camangon";
 
     useEffect(() => {
-        // Start fade in immediately
-        setTimeout(() => {
-            setFadeState('fadeIn');
-        }, 100);
+        const start = performance.now();
+        let frame = 0;
 
-        // Finish after 3 seconds
-        setTimeout(() => {
-            onFinish();
-        }, 3000);
+        const tick = (now: number) => {
+            const p = Math.min(1, (now - start) / DURATION);
+            setProgress(Math.round(p * 100));
+            if (p < 1) frame = requestAnimationFrame(tick);
+        };
+        frame = requestAnimationFrame(tick);
+
+        const leave = setTimeout(() => setLeaving(true), DURATION);
+        const done = setTimeout(onFinish, DURATION + 600);
 
         return () => {
-            // Cleanup any timeouts if component unmounts
+            cancelAnimationFrame(frame);
+            clearTimeout(leave);
+            clearTimeout(done);
         };
     }, [onFinish]);
 
     return (
-        <div
-            className={`fixed inset-0 flex items-center justify-center intro-container ${fadeState} ${
-                currentTheme === "dark" ? "bg-darkTheme text-whiteColor" : "bg-lightTheme text-textDark"
-            }`}
-        >
-            <h1 className={`intro-text ${fadeState}`}>
-                {name}
+        <div className={`intro-container fixed inset-0 z-[300] bg-paper text-ink flex flex-col justify-end gap-10 p-6 sm:p-10 ${leaving ? "leaving" : ""}`}>
+
+            <h1 className="intro-text font-display font-black uppercase leading-[0.85] tracking-tight">
+                {name.split("").map((char, i) => (
+                    <span key={i} className="intro-letter" style={{ animationDelay: `${i * 45}ms` }}>
+                        {char === " " ? " " : char}
+                    </span>
+                ))}
             </h1>
+
+            <div>
+                <div className="flex justify-end items-end mb-3">
+                    <span className="font-display font-black text-5xl sm:text-7xl tabular-nums leading-none">
+                        {String(progress).padStart(3, "0")}
+                        <span className="text-signal">%</span>
+                    </span>
+                </div>
+                <div className="h-px bg-line/20">
+                    <div className="h-px bg-signal" style={{ width: `${progress}%` }} />
+                </div>
+            </div>
         </div>
     );
 };

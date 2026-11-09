@@ -1,66 +1,66 @@
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
 import { Link } from "react-scroll";
-import { FaCaretDown } from "react-icons/fa";
+
+const STACK = ["PHP", "C#", ".NET", "React", "TypeScript", ".NET Core", "JavaScript"];
+
+// Delay helper for the one orchestrated load sequence
+const d = (ms: number) => ({ animationDelay: `${ms}ms` });
 
 const HeroSection = () => {
-  const ref = useRef(null); 
-  const isInView = useInView(ref, { once: true });
-
   return (
-    <motion.section
-      id="home"
-      ref={ref} 
-      initial={{ opacity: 0, y: 50 }} 
-      animate={isInView ? { opacity: 1, y: 0 } : {}} 
-      transition={{ duration: 0.5 }} 
-      className="min-h-screen flex flex-col items-center justify-center py-16 sm:py-32 md:flex-row md:justify-between md:items-center"
-    >
-      {/* Left Section: Heading */}
-      <motion.div
-        className="md:w-3/4 lg:w-2/3 space-y-5 text-left"
-        initial={{ opacity: 0, x: -50 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 1, delay: 0.3 }}
-      >
-        <h1 className="text-4xl font-bold mt-6 md:mt-0 md:text-6xl">
-          Hey 👋, I&apos;m{" "}
-          <span className="text-primaryColor font-bold dark:text-secondaryColor">
-            Jim
-          </span>{" "}
-          —
-        </h1>
-        <h2 className="text-3xl">Software Developer</h2>
-        <hr className="w-full border-t-2 dark:border-secondaryColor my-4" />
-        <p className="text-md">PHP · C# · .NET · React · TypeScript · .NET Core · Javascript</p>
-        <div className="flex items-center justify-center space-x-4">
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <Link
-              to="experience"
-              smooth={true}
-              offset={-100}
-              duration={500}
-              className="cursor-pointer text-4xl"
-            >
-              <FaCaretDown title={"WorkExperience"} />
-            </Link>
-          </motion.div>
+    <section id="home" className="relative min-h-screen flex flex-col justify-center pt-24 pb-16">
+      <h1 className="font-display font-black uppercase leading-[0.8] tracking-tight text-[clamp(2.75rem,12vw,9.25rem)]">
+        <span className="reveal-mask">
+          <span className="block animate-rise" style={d(300)}>Jimmy</span>
+        </span>
+        <span className="reveal-mask">
+          <span className="flex items-end gap-4 md:gap-6 animate-rise" style={d(420)}>
+            <span className="hidden sm:block h-[0.08em] w-[0.6em] bg-signal mb-[0.12em] shrink-0" />
+            <span>Camangon<span className="text-signal">.</span></span>
+          </span>
+        </span>
+      </h1>
+
+      <div className="h-px bg-line/15 mt-12 origin-left animate-draw" style={d(600)} />
+
+      <div className="mt-8 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+        <div>
+          <p className="font-display font-bold uppercase leading-none tracking-tight text-3xl sm:text-4xl md:text-5xl animate-fade" style={d(750)}>
+            <span className="text-signal">Software Developer</span>
+          </p>
+          <ul className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm sm:text-base text-muted animate-fade" style={d(850)}>
+            {STACK.map((tech, i) => (
+              <li key={tech} className="flex items-center gap-3">
+                {i > 0 && <span className="w-1 h-1 rounded-full bg-signal" aria-hidden="true" />}
+                <span className="hover:text-ink transition-colors">{tech}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      </motion.div>
 
-
-      <motion.div
-        className="hidden md:block md:w-1/2"
-        initial={{ opacity: 0, x: 50 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 1, delay: 0.6 }}
-      >
-        {/* Temporary Empty */}
-      </motion.div>
-    </motion.section>
+        <div className="flex flex-wrap items-center gap-3 animate-fade" style={d(950)}>
+          <Link
+            to="experience"
+            smooth={true}
+            offset={-80}
+            duration={600}
+            className="group inline-flex items-center gap-3 rounded-full bg-ink text-paper px-6 py-3 text-sm font-medium cursor-pointer hover:bg-signal transition-colors duration-300"
+          >
+            View my work
+            <span className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
+          </Link>
+          <Link
+            to="contact"
+            smooth={true}
+            offset={-80}
+            duration={800}
+            className="inline-flex items-center rounded-full bg-panel px-6 py-3 text-sm font-medium cursor-pointer hover:bg-signal/10 hover:text-signal transition-colors duration-300"
+          >
+            Contact
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 };
 

@@ -2,11 +2,15 @@
 
 import { useSearchParams, useRouter } from "next/navigation";
 import projects from "../components/projects";
+import { splitName } from "../components/ProjectSection";
 import Image from "next/image";
 import Footer from "../components/Footer";
-import { FaArrowLeft, FaChevronLeft, FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useState, useEffect, useCallback } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+
+// Delay helper for the page's load sequence
+const d = (ms: number) => ({ animationDelay: `${ms}ms` });
 
 const DisplayProject: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -62,136 +66,133 @@ const DisplayProject: React.FC = () => {
   }, [showModal]);
 
   if (project) {
+    const [shortName, longName] = splitName(project.name);
+
     return (
-      <div className="min-h-screen bg-lightTheme dark:bg-darkTheme">
+      <div className="relative z-[2] min-h-screen">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
 
-        {/* Back button */}
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl pt-8">
-          <button
-            onClick={() => router.back()}
-            className="group inline-flex items-center gap-2 text-sm text-primaryColor dark:text-secondaryColor hover:opacity-70 transition-opacity duration-200"
-          >
-            <FaArrowLeft className="group-hover:-translate-x-1 transition-transform duration-200" />
-            Back
-          </button>
-        </div>
+          {/* Sheet header */}
+          <div className="pt-8 flex items-center justify-between gap-4">
+            <button
+              onClick={() => router.back()}
+              className="group inline-flex items-center gap-2 text-sm font-medium hover:text-signal transition-colors"
+            >
+              <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span>
+              Back
+            </button>
+          </div>
+          <div className="h-px bg-line/10 mt-4 origin-left animate-draw" style={d(100)} />
 
-        {/* Main content */}
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl py-10">
-
-          {/* Title + external link */}
-          <div className="mb-8">
-            <h2 className="font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-3">
-              {project.name}
-            </h2>
-            <div className="flex items-center gap-3">
+          {/* Title block */}
+          <header className="py-14 md:py-20">
+            <h1 className="font-display font-black uppercase leading-[0.85] tracking-tight break-words text-[clamp(3rem,12vw,10rem)]">
+              <span className="reveal-mask">
+                <span className="block animate-rise" style={d(200)}>{shortName}</span>
+              </span>
+            </h1>
+            {longName && (
+              <p className="mt-5 text-muted animate-fade" style={d(400)}>{longName}</p>
+            )}
+            <div className="mt-8 animate-fade" style={d(500)}>
               {project.projectUrl ? (
                 <a
                   href={project.projectUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Open ${project.name} online`}
-                  className="group inline-flex items-center gap-2 text-sm text-primaryColor dark:text-secondaryColor border border-primaryColor dark:border-secondaryColor px-4 py-1.5 rounded-full  hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-200 hover:shadow-md"
+                  className="group inline-flex items-center gap-3 rounded-full bg-ink text-paper px-6 py-3 text-sm font-medium hover:bg-signal transition-colors duration-300"
                 >
-                  <FaExternalLinkAlt className="text-xs group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-200" />
-                  View Live
+                  View live
+                  <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
                 </a>
               ) : (
-                <span className="text-sm text-description-light dark:text-description-dark italic">
-                  Not available online
-                </span>
+                <span className="text-sm text-muted">Not available online</span>
               )}
             </div>
-          </div>
+          </header>
 
-          {/* Problem */}
-          <div className="mb-6 pl-4 border-l-2 border-primaryColor dark:border-secondaryColor">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primaryColor dark:text-secondaryColor mb-2">
-              Problem
-            </p>
-            <p className="text-description-light dark:text-description-dark leading-7">
-              {project.problem}
-            </p>
-          </div>
+          {/* Problem / Solution / Stack */}
+          <div className="grid md:grid-cols-12 gap-10 md:gap-8 border-t border-line/10 pt-12 animate-fade" style={d(600)}>
+            <section className="md:col-span-5">
+              <p className="label mb-4">Problem</p>
+              <p className="text-lg leading-relaxed text-ink/85">{project.problem}</p>
+            </section>
 
-          {/* Solution */}
-          <div className="mb-8 pl-4 border-l-2 border-primaryColor dark:border-secondaryColor">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primaryColor dark:text-secondaryColor mb-2">
-              Solution
-            </p>
-            <ul className="space-y-2">
-              {project.solution.map((feature, index) => (
-                <li
-                  key={index}
-                  className="flex items-start gap-2 text-description-light dark:text-description-dark leading-7"
-                >
-                  <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-primaryColor dark:bg-secondaryColor flex-shrink-0" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
+            <section className="md:col-span-7">
+              <p className="label mb-4">Solution</p>
+              <ol className="border-t border-line/10">
+                {project.solution.map((feature, index) => (
+                  <li
+                    key={index}
+                    className="flex gap-3 py-3 border-b border-line/10 leading-relaxed text-ink/75"
+                  >
+                    <span className="mt-[0.6rem] w-1.5 h-1.5 rounded-full bg-signal shrink-0" />
+                    {feature}
+                  </li>
+                ))}
+              </ol>
+            </section>
 
-          {/* Tech stack */}
-          <div className="mb-12">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primaryColor dark:text-secondaryColor mb-3">
-              Technologies
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech, index) => (
-                <span
-                  key={index}
-                  className="text-xs px-3 py-1 rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+            <section className="md:col-span-12">
+              <p className="label mb-4">Technologies</p>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech) => (
+                  <span key={tech} className="tag">{tech}</span>
+                ))}
+              </div>
+            </section>
           </div>
 
           {/* Screenshots */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-primaryColor dark:text-secondaryColor mb-6">
-              Screenshots
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <section className="py-20 md:py-28">
+            <div className="label flex items-center gap-4 mb-10">
+              <span>Screenshots</span>
+              <span className="h-px flex-1 bg-line/10" />
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {project.screenshots.map((screenshot, index) => (
-                <div
-                  key={index}
+                <button
+                  key={screenshot}
                   onClick={() => handleImageClick(screenshot, index)}
-                  className="group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+                  className="group text-left"
                 >
-                  <Image
-                    src={screenshot}
-                    alt={`Screenshot ${index + 1}`}
-                    width={400}
-                    height={300}
-                    className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
+                  <div>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-panel ring-1 ring-line/10">
+                      <Image
+                        src={screenshot}
+                        alt={`Screenshot ${index + 1}`}
+                        fill
+                        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                        className="object-cover object-top group-hover:scale-105 transition-all duration-500"
+                      />
+                    </div>
+                  </div>
+                </button>
               ))}
             </div>
-          </div>
-        </div>
+          </section>
 
-        <Footer />
+          <Footer />
+        </div>
 
         {/* Modal / Lightbox */}
         {showModal && (
           <div
-            className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/95 backdrop-blur-sm"
+            className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-[#0b0b0c]/95 backdrop-blur-sm"
             onClick={handleCloseModal}
           >
             {/* Close */}
             <button
               onClick={handleCloseModal}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-textDark text-whiteColor dark:bg-whiteColor dark:text-textDark hover:opacity-80 hover:scale-110 transition-all duration-200 shadow-xl"
+              aria-label="Close"
+              className="absolute top-4 right-4 z-10 grid place-items-center w-10 h-10 border border-white/30 text-white hover:border-[#3FB8C0] hover:text-[#3FB8C0] transition-colors"
             >
-              <IoCloseSharp size={20} />
+              <IoCloseSharp size={18} />
             </button>
 
             {/* Counter */}
-            <div className="absolute top-5 left-1/2 -translate-x-1/2 text-white/60 text-sm tabular-nums select-none">
+            <div className="absolute top-6 left-1/2 -translate-x-1/2 text-sm text-white/60 tabular-nums select-none">
               {currentImageIndex + 1} / {project.screenshots.length}
             </div>
 
@@ -199,13 +200,14 @@ const DisplayProject: React.FC = () => {
             <button
               onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}
               disabled={currentImageIndex === 0}
-              className={`hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-textDark text-whiteColor dark:bg-whiteColor dark:text-textDark shadow-xl transition-all duration-200 ${
+              aria-label="Previous image"
+              className={`hidden md:grid place-items-center absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 border border-white/30 text-white transition-colors ${
                 currentImageIndex === 0
                   ? "opacity-30 cursor-not-allowed"
-                  : "hover:opacity-80 hover:scale-110"
+                  : "hover:border-[#3FB8C0] hover:text-[#3FB8C0]"
               }`}
             >
-              <FaChevronLeft size={18} />
+              <FaChevronLeft size={16} />
             </button>
 
             {/* Image */}
@@ -221,7 +223,7 @@ const DisplayProject: React.FC = () => {
                 quality={100}
                 priority
                 sizes="(max-width: 768px) calc(100vw - 32px), calc(100vw - 160px)"
-                className="rounded-lg object-contain max-h-[70vh] md:max-h-[80vh] w-full"
+                className="object-contain max-h-[70vh] md:max-h-[80vh] w-full"
               />
             </div>
 
@@ -229,40 +231,40 @@ const DisplayProject: React.FC = () => {
             <button
               onClick={(e) => { e.stopPropagation(); handleNextImage(); }}
               disabled={currentImageIndex === project.screenshots.length - 1}
-              className={`hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-textDark text-whiteColor dark:bg-whiteColor dark:text-textDark shadow-xl transition-all duration-200 ${
+              aria-label="Next image"
+              className={`hidden md:grid place-items-center absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 border border-white/30 text-white transition-colors ${
                 currentImageIndex === project.screenshots.length - 1
                   ? "opacity-30 cursor-not-allowed"
-                  : "hover:opacity-80 hover:scale-110"
+                  : "hover:border-[#3FB8C0] hover:text-[#3FB8C0]"
               }`}
             >
-              <FaChevronRight size={18} />
+              <FaChevronRight size={16} />
             </button>
 
-            {/* Mobile: bottom row with prev / dots / next */}
+            {/* Mobile: bottom row with prev / ticks / next */}
             <div className="flex md:hidden items-center gap-4 mt-5" onClick={(e) => e.stopPropagation()}>
               <button
                 onClick={handlePrevImage}
                 disabled={currentImageIndex === 0}
-                className={`p-3 rounded-full bg-textDark text-whiteColor dark:bg-whiteColor dark:text-textDark shadow-xl transition-all duration-200 ${
+                aria-label="Previous image"
+                className={`grid place-items-center w-11 h-11 border border-white/30 text-white ${
                   currentImageIndex === 0 ? "opacity-30 cursor-not-allowed" : "active:scale-95"
                 }`}
               >
-                <FaChevronLeft size={16} />
+                <FaChevronLeft size={14} />
               </button>
 
-              {/* Dots */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 {project.screenshots.map((_, idx) => (
                   <button
                     key={idx}
+                    aria-label={`Go to image ${idx + 1}`}
                     onClick={() => {
                       setCurrentImageIndex(idx);
                       setSelectedImage(project.screenshots[idx]);
                     }}
-                    className={`rounded-full transition-all duration-200 ${
-                      idx === currentImageIndex
-                        ? "w-4 h-2 bg-white"
-                        : "w-2 h-2 bg-white/40"
+                    className={`h-0.5 transition-all duration-200 ${
+                      idx === currentImageIndex ? "w-5 bg-[#3FB8C0]" : "w-2.5 bg-white/40"
                     }`}
                   />
                 ))}
@@ -271,28 +273,28 @@ const DisplayProject: React.FC = () => {
               <button
                 onClick={handleNextImage}
                 disabled={currentImageIndex === project.screenshots.length - 1}
-                className={`p-3 rounded-full bg-textDark text-whiteColor dark:bg-whiteColor dark:text-textDark shadow-xl transition-all duration-200 ${
+                aria-label="Next image"
+                className={`grid place-items-center w-11 h-11 border border-white/30 text-white ${
                   currentImageIndex === project.screenshots.length - 1 ? "opacity-30 cursor-not-allowed" : "active:scale-95"
                 }`}
               >
-                <FaChevronRight size={16} />
+                <FaChevronRight size={14} />
               </button>
             </div>
 
-            {/* Desktop: dot indicators */}
-            <div className="hidden md:flex absolute bottom-6 items-center gap-2">
+            {/* Desktop: tick indicators */}
+            <div className="hidden md:flex absolute bottom-7 items-center gap-1.5">
               {project.screenshots.map((_, idx) => (
                 <button
                   key={idx}
+                  aria-label={`Go to image ${idx + 1}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentImageIndex(idx);
                     setSelectedImage(project.screenshots[idx]);
                   }}
-                  className={`rounded-full transition-all duration-200 ${
-                    idx === currentImageIndex
-                      ? "w-4 h-2 bg-white"
-                      : "w-2 h-2 bg-white/40 hover:bg-white/70"
+                  className={`h-0.5 transition-all duration-200 ${
+                    idx === currentImageIndex ? "w-6 bg-[#3FB8C0]" : "w-3 bg-white/40 hover:bg-white/70"
                   }`}
                 />
               ))}
@@ -305,14 +307,14 @@ const DisplayProject: React.FC = () => {
 
   // Not found fallback
   return (
-    <div className="min-h-screen bg-lightTheme dark:bg-darkTheme flex flex-col items-center justify-center gap-4">
-      <p className="text-2xl font-bold text-gray-900 dark:text-white">Project not found</p>
+    <div className="relative z-[2] min-h-screen flex flex-col items-center justify-center gap-6 px-5 text-center">
+      
+      <p className="font-display font-black uppercase text-6xl md:text-8xl leading-none">Not found</p>
       <button
         onClick={() => router.back()}
-        className="inline-flex items-center gap-2 text-sm text-primaryColor dark:text-secondaryColor hover:opacity-70 transition-opacity"
+        className="inline-flex items-center gap-2 text-sm font-medium hover:text-signal transition-colors"
       >
-        <FaArrowLeft />
-        Go back
+        ← Go back
       </button>
     </div>
   );

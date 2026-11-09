@@ -13,7 +13,7 @@ const Button = ({ buttonText }: ButtonProps) => {
         smooth={true}
         offset={-100}
         duration={500}
-        className='bg-primaryColor p-2 text-white rounded-md text-lightTheme w-52 flex justify-center transition-transform hover:translate-y-[-5px] cursor-pointer'
+        className='bg-ink text-paper p-2 font-mono text-xs uppercase tracking-[0.18em] w-52 hover:bg-signal flex justify-center transition-transform hover:translate-y-[-5px] cursor-pointer'
       >
         {buttonText}
       </Link>

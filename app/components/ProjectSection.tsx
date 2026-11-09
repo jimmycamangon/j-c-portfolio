@@ -1,102 +1,96 @@
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
 import { Project } from "./type";
 import projects from "./projects";
+import SectionHeader from "./SectionHeader";
+
+// Asymmetric 12-col rhythm: wide/narrow, narrow/wide, then thirds
+const SPANS = ["md:col-span-7", "md:col-span-5", "md:col-span-5", "md:col-span-7", "md:col-span-4", "md:col-span-4", "md:col-span-4"];
+
+// "DACCS (Digital Application ...)" -> ["DACCS", "Digital Application ..."]
+export const splitName = (name: string): [string, string | null] => {
+  const match = name.match(/^(.*?)\s*\((.*)\)\s*$/);
+  return match ? [match[1], match[2]] : [name, null];
+};
+
+const MAX_TAGS = 4;
 
 const ProjectsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   return (
-    <motion.section
-      id="projects"
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5 }}
-      className="flex flex-col py-24 md:py-32"
-    >
-      <h1 className="text-left font-bold text-3xl text-gray-900 dark:text-white mb-3">
-        Projects
-      </h1>
-      <div className="w-6 h-0.5 bg-primaryColor mb-12 rounded-full" />
+    <section id="projects" className="py-24 md:py-32">
+      <SectionHeader index="02" title="Projects" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.map((project: Project, idx: number) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.4, delay: idx * 0.1 }}
-            className="group rounded-xl border border-widthGray dark:border-grayColor/30 overflow-hidden hover:shadow-lg transition-all duration-300"
-          >
-            {/* Image */}
-            <div className="overflow-hidden h-48">
-              <Image
-                src={project.image}
-                alt={project.name}
-                width={800}
-                height={400}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-14">
+        {projects.map((project: Project, idx: number) => {
+          const [shortName] = splitName(project.name);
+          const extra = project.technologies.length - MAX_TAGS;
+          const detailsHref = { pathname: "/pages/", query: { id: project.id } };
 
-            {/* Content */}
-            <div className="p-5 flex flex-col gap-3">
-              <h2 className="font-bold text-lg text-gray-900 dark:text-white leading-snug">
-                {project.name}
-              </h2>
+          return (
+            <motion.article
+              key={project.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, delay: (idx % 3) * 0.08, ease: [0.2, 0.8, 0.2, 1] }}
+              className={`group flex flex-col ${SPANS[idx % SPANS.length]}`}
+            >
+              <Link href={detailsHref} className="block" aria-label={`View details for ${shortName}`}>
+                <div className="relative overflow-hidden aspect-[16/10] rounded-xl bg-panel ring-1 ring-line/10">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    sizes="(min-width: 768px) 60vw, 100vw"
+                    className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
+                  />
+                </div>
+              </Link>
 
-              <p className="text-base text-description-light dark:text-description-dark leading-relaxed line-clamp-2">
-                {project.description}
-              </p>
+              <div className="mt-5 flex flex-col gap-3 flex-1">
+                <h3 className="font-display font-black uppercase text-3xl md:text-4xl leading-[0.9] tracking-tight group-hover:text-signal transition-colors">
+                  {shortName}
+                </h3>
 
-              {/* Tech pills */}
-              <div className="flex flex-wrap gap-1.5">
-                {project.technologies.map((tech, techIdx) => (
-                  <span
-                    key={techIdx}
-                    className="text-xs px-2.5 py-0.5 rounded-full border border-primaryColor/40 text-primaryColor dark:border-secondaryColor/30 dark:text-secondaryColor"
+                <p className="text-ink/70 leading-relaxed line-clamp-2">{project.description}</p>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {project.technologies.slice(0, MAX_TAGS).map((tech) => (
+                    <span key={tech} className="tag">{tech}</span>
+                  ))}
+                  {extra > 0 && <span className="tag !text-muted">+{extra}</span>}
+                </div>
+
+                <div className="mt-auto pt-2 flex items-center gap-5 text-sm font-medium">
+                  <Link
+                    href={detailsHref}
+                    className="group/btn inline-flex items-center gap-1.5 hover:text-signal transition-colors"
                   >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+                    Details
+                    <span className="transition-transform duration-300 group-hover/btn:translate-x-1">→</span>
+                  </Link>
 
-              {/* Actions */}
-              <div className="flex items-center gap-3 pt-1">
-                <Link
-                  href={{ pathname: "/pages/", query: { id: project.id } }}
-                  className="group/btn inline-flex items-center gap-2 text-sm text-primaryColor dark:text-secondaryColor border border-primaryColor dark:border-secondaryColor px-4 py-1.5 rounded-full hover:bg-primaryColor hover:text-whiteColor dark:hover:bg-secondaryColor dark:hover:text-textDark transition-all duration-200"
-                >
-                  View Details
-                  <FaArrowRight className="text-xs group-hover/btn:translate-x-1 transition-transform duration-200" />
-                </Link>
-
-                {project.projectUrl ? (
-                  <a
-                    href={project.projectUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Open ${project.name} online`}
-                    className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-primaryColor text-primaryColor dark:border-secondaryColor dark:text-secondaryColor hover:bg-primaryColor hover:text-whiteColor dark:hover:bg-secondaryColor dark:hover:text-textDark transition-all duration-200"
-                  >
-                    <FaExternalLinkAlt className="text-xs" />
-                  </a>
-                ) : (
-                  <span className="text-sm italic text-description-light dark:text-description-dark">
-                    Not available online
-                  </span>
-                )}
+                  {project.projectUrl && (
+                    <a
+                      href={project.projectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open ${project.name} online`}
+                      className="group/live inline-flex items-center gap-1.5 text-muted hover:text-signal transition-colors"
+                    >
+                      Visit
+                      <span className="transition-transform duration-300 group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5">↗</span>
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.article>
+          );
+        })}
       </div>
-    </motion.section>
+    </section>
   );
 };
 

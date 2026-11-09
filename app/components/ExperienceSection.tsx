@@ -1,14 +1,16 @@
-import React, { useRef } from "react";
+import React from "react";
 import Image, { StaticImageData } from "next/image";
 import AMSPEC from "../../public/logo-amspec.jpg";
 import ITM from "../../public/logo-itm.jpeg";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
+import SectionHeader from "./SectionHeader";
 
 type Experience = {
   role: string;
   company: string;
   period: string;
   logo: StaticImageData;
+  current?: boolean;
   highlights: string[];
   tech: string[];
 };
@@ -19,6 +21,7 @@ const experiences: Experience[] = [
     company: "IT Managers Inc. (Agency) | Client: Toyota Motor Philippines",
     period: "Nov 2025 – Present",
     logo: ITM,
+    current: true,
     highlights: [
       "Delivered 10 modules on VIMS (Vehicle Import Management System), built with React, ASP.NET Core and SQL Server, covering shipment monitoring, cost reporting and dashboards",
       "Wrote the endpoint that receives shipment data from another Toyota system into staging tables and moves it to the main ones, built and deployed on a short deadline to unblock another team",
@@ -42,85 +45,63 @@ const experiences: Experience[] = [
 ];
 
 const ExperienceSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   return (
-    <section id="experience" ref={ref} className="py-24 md:py-32">
-      <h2 className="font-bold text-3xl text-gray-900 dark:text-white mb-3">
-        Work Experience
-      </h2>
-      <div className="w-6 h-0.5 bg-primaryColor mb-12 rounded-full" />
+    <section id="experience" className="py-24 md:py-32">
+      <SectionHeader index="01" title="Experience" />
 
-      <div className="space-y-0">
+      <div className="border-t border-line/10">
         {experiences.map((exp, i) => (
-          <motion.div
+          <motion.article
             key={i}
-            initial={{ opacity: 0, x: -16 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: i * 0.15 }}
-            className="grid grid-cols-[20px_1fr] gap-x-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: 0.05, ease: [0.2, 0.8, 0.2, 1] }}
+            className="group grid md:grid-cols-12 gap-6 md:gap-8 py-10 md:py-12 border-b border-line/10"
           >
-            {/* Timeline column: dot + connecting line */}
-            <div className="flex flex-col items-center">
-              <div className="mt-1.5 w-2.5 h-2.5 rounded-full bg-primaryColor shrink-0" />
-              {i < experiences.length - 1 && (
-                <div className="w-0.5 flex-1 bg-widthGray dark:bg-grayColor mt-1 rounded-full" />
-              )}
+            {/* Meta column */}
+            <div className="md:col-span-3 flex md:flex-col items-start justify-between md:justify-start gap-4">
+              <div className="space-y-2">
+                <p className="text-sm text-muted tabular-nums">{exp.period}</p>
+                {exp.current && (
+                  <p className="inline-flex items-center gap-2 text-xs font-medium text-signal">
+                    <span className="w-1.5 h-1.5 rounded-full bg-signal animate-blink" />
+                    Current
+                  </p>
+                )}
+              </div>
+              <Image
+                src={exp.logo}
+                alt={exp.company}
+                width={56}
+                height={56}
+                className="w-14 h-14 object-contain rounded-lg bg-white p-1 ring-1 ring-line/10"
+              />
             </div>
 
-            {/* Content column */}
-            <div className="pb-12">
-              {/* Role + date */}
-              <div className="flex items-start justify-between gap-4 mb-2">
-                <span className="font-bold text-xl text-gray-900 dark:text-white leading-tight">
-                  {exp.role}
-                </span>
-                <span className="text-sm text-description-light dark:text-description-dark whitespace-nowrap shrink-0 mt-1">
-                  {exp.period}
-                </span>
-              </div>
+            {/* Body column */}
+            <div className="md:col-span-9">
+              <h3 className="font-display font-black uppercase text-4xl md:text-5xl leading-[0.9] tracking-tight group-hover:text-signal transition-colors duration-300">
+                {exp.role}
+              </h3>
+              <p className="mt-3 text-muted">{exp.company}</p>
 
-              {/* Company + logo */}
-              <div className="flex items-center gap-2.5 mb-4">
-                <Image
-                  src={exp.logo}
-                  alt={exp.company}
-                  width={52}
-                  height={52}
-                  className="rounded-md object-contain shrink-0 border border-gray-200 dark:border-gray-700 p-0.5"
-                />
-                <p className="text-base text-description-light dark:text-description-dark">
-                  {exp.company}
-                </p>
-              </div>
-
-              {/* Highlights */}
-              <ul className="space-y-2 mb-5">
+              <ul className="mt-6 space-y-3">
                 {exp.highlights.map((point, j) => (
-                  <li
-                    key={j}
-                    className="flex items-start gap-2.5 text-base text-description-light dark:text-description-dark leading-relaxed"
-                  >
-                    <span className="mt-[7px] w-1 h-1 rounded-full bg-primaryColor shrink-0" />
+                  <li key={j} className="flex gap-3 leading-relaxed text-ink/75">
+                    <span className="mt-[0.6rem] w-1.5 h-1.5 rounded-full bg-signal shrink-0" />
                     {point}
                   </li>
                 ))}
               </ul>
 
-              {/* Tech pills */}
-              <div className="flex flex-wrap gap-2">
-                {exp.tech.map((t, k) => (
-                  <span
-                    key={k}
-                    className="text-xs px-2.5 py-0.5 rounded-full border border-primaryColor/40 text-primaryColor dark:border-secondaryColor/30 dark:text-secondaryColor"
-                  >
-                    {t}
-                  </span>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {exp.tech.map((t) => (
+                  <span key={t} className="tag">{t}</span>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </motion.article>
         ))}
       </div>
     </section>

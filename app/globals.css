@@ -13,17 +13,125 @@ html {
 }
 
 @layer base {
+  /* Light — clean white, ink type, one signal accent */
   :root {
-    --gradient-overlay: radial-gradient(circle, #f5f7fa, #c3cfe2);
+    --paper: 255 255 255;
+    --panel: 244 244 242;
+    --ink: 20 20 22;
+    --muted: 110 110 116;
+    --line: 20 20 22;
+    --signal: 14 124 134;
+    --caution: 196 140 20;
+    --grid: transparent;
+    --grain-opacity: 0;
+    color-scheme: light;
   }
 
-  [data-theme="dark"] {
-    --gradient-overlay: radial-gradient(circle, #10111A, #000000);
+  /* "Night shift" — graphite floor, same signal */
+  .dark {
+    --paper: 14 14 16;
+    --panel: 30 30 34;
+    --ink: 240 238 234;
+    --muted: 150 150 156;
+    --line: 240 238 234;
+    --signal: 63 184 192;
+    --caution: 240 184 64;
+    --grid: transparent;
+    --grain-opacity: 0;
+    color-scheme: dark;
   }
 
   body {
-    @apply dark:bg-darkTheme bg-lightTheme p-0;
-    font-family: "Satoshi", "Inter", sans-serif;
+    @apply bg-paper text-ink font-sans antialiased;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: -1px -1px;
+  }
+
+  /* Paper grain over everything, never intercepts clicks */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .dark body::before {
+    mix-blend-mode: screen;
+  }
+
+  ::selection {
+    background: rgb(var(--signal));
+    color: rgb(var(--paper));
+  }
+}
+
+@layer components {
+  /* Small uppercase mono annotation, like a part label */
+  .label {
+    @apply font-mono text-[0.68rem] uppercase tracking-[0.18em] text-muted;
+  }
+
+  /* Soft filled tech chip */
+  .tag {
+    @apply inline-flex items-center rounded-full bg-panel px-3 py-1 text-xs font-medium text-ink/75 transition-colors duration-200;
+  }
+  .tag:hover {
+    @apply bg-signal/10 text-signal;
+  }
+
+  /* Corner crop marks around a framed element */
+  .crop {
+    position: relative;
+  }
+  .crop::before,
+  .crop::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: rgb(var(--ink));
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  .crop::before {
+    top: -7px;
+    left: -7px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+  .crop::after {
+    bottom: -7px;
+    right: -7px;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+  }
+  .crop:hover::before,
+  .crop:hover::after {
+    border-color: rgb(var(--signal));
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Diagonal hazard stripes */
+  .hazard {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgb(var(--caution)) 0 8px,
+      transparent 8px 16px
+    );
+  }
+
+  /* Masked line used for the hero's rise-in headline */
+  .reveal-mask {
+    display: block;
+    overflow: hidden;
   }
 }
 
@@ -36,53 +144,44 @@ html {
   }
 }
 
-/* Hide ripple effect on mobile */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hide cursor follower on touch / small screens */
 @media (max-width: 768px) {
   #ripple {
     display: none !important;
   }
 }
 
-/* Show ripple effect on desktop */
 @media (min-width: 769px) {
   #ripple {
     position: fixed;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    background: rgb(var(--signal));
     pointer-events: none;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(45deg);
     transition: transform 0.15s ease, opacity 0.15s ease;
     z-index: 1000;
-    mix-blend-mode: difference;
+    opacity: 0;
   }
 
-  body:hover #ripple {
-    transform: translate(-50%, -50%) scale(1.2);
+  /* Only show once the mouse has actually moved */
+  #ripple.active {
     opacity: 1;
   }
 
-  /* Hide ripple when hovering over interactive elements */
   body:has(a:hover) #ripple,
   body:has(button:hover) #ripple {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) rotate(45deg) scale(0.4);
   }
-}
-
-@font-face {
-  font-family: "Satoshi";
-  src: url("/Fonts/Satoshi-Regular.woff2") format("woff2"),
-    url("/Fonts/Satoshi-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Satoshi";
-  src: url("/Fonts/Satoshi-Bold.woff2") format("woff2"),
-    url("/Fonts/Satoshi-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
 }

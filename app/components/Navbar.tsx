@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
-import Image from "next/image";
 import { useTheme } from "next-themes";
 import { RiMoonFill, RiSunLine } from "react-icons/ri";
-import { IoMdMenu, IoMdClose } from "react-icons/io";
-import Logo from "../../public/j-c-logo-v2.png";
 
 interface NavItem {
   label: string;
@@ -13,11 +10,7 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Home",
-    page: "home",
-  },
-  {
-    label: "Background",
+    label: "Work",
     page: "experience",
   },
   {
@@ -44,13 +37,7 @@ const Navbar = () => {
   useEffect(() => {
     setMounted(true);
 
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
 
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -58,128 +45,112 @@ const Navbar = () => {
     };
   }, []);
 
+  // Lock scroll behind the mobile menu
+  useEffect(() => {
+    document.body.style.overflow = navbar ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [navbar]);
+
   if (!mounted) {
     return null;
   }
 
+  const toggleTheme = () => setTheme(currentTheme === "dark" ? "light" : "dark");
+
   return (
     <>
-      {/* Full screen overlay when nav is open on mobile */}
-      <div
-        className={`fixed inset-0 transition-all duration-300 nav:hidden ${navbar ? "opacity-100 visible" : "opacity-0 invisible"
-          } ${currentTheme === "dark"
-            ? "bg-darkTheme text-whiteColor"
-            : "bg-lightTheme text-textDark"
-          }`}
-        style={{ zIndex: 40 }}
-      />
-
       <header
-        className={`fixed top-0 inset-x-0 nav:inset-x-auto nav:left-0 ${navbar ? "h-screen" : "h-auto"
-          } nav:h-screen flex flex-col justify-between items-center p-4 z-50`}
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+          isScrolled || navbar
+            ? "bg-paper/85 backdrop-blur-md border-b border-line/10"
+            : "border-b border-transparent"
+        }`}
       >
-        {/* Top bar container for mobile */}
-        <div
-          className={`flex justify-between items-center w-full nav:block transition-all duration-300
-        ${isScrolled && !navbar
-              ? "backdrop-blur-md bg-white/30 dark:bg-black/30 shadow-lg rounded-lg md:backdrop-blur-0 md:bg-transparent md:shadow-none md:rounded-none"
-              : ""
-            }
-    `}
-        >
-          {/* Logo */}
-          <div
-            className={`flex justify-start nav:justify-start transition-all duration-300 nav:w-48 nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? "bg-gray-100 dark:bg-gray-800" : ""
-              }`}
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 h-20 flex items-center justify-between gap-6">
+          {/* Mark */}
+          <Link
+            to="home"
+            smooth={true}
+            duration={500}
+            onClick={() => setNavbar(false)}
+            className="group flex items-baseline gap-3 cursor-pointer"
           >
-            <Link
-              to="home"
-              smooth={true}
-              offset={-100}
-              duration={500}
-              className="cursor-pointer transition-transform hover:scale-110 z-50"
-              onClick={() => setNavbar(false)}
-            >
-              <Image
-                src={Logo}
-                width={70}
-                height={70}
-                alt="J-C-LOGO"
-                className="p-2"
-                priority
-              />
-            </Link>
-          </div>
+            <span className="font-display font-black text-4xl tracking-tight leading-none">
+              JC<span className="text-signal">/</span>
+            </span>
+          </Link>
 
-          {/* Hamburger button - only visible below 1300px */}
-          <button
-            onClick={() => setNavbar(!navbar)}
-            className="text-gray-600 dark:text-gray-300 nav:hidden pointer-events-auto p-2"
-            style={{ zIndex: 60 }}
-          >
-            {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={24} />}
-          </button>
-        </div>
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {NAV_ITEMS.map((item, idx) => (
+              <Link
+                key={item.page}
+                to={item.page}
+                spy={true}
+                smooth={true}
+                offset={-80}
+                duration={500}
+                spyThrottle={100}
+                activeClass="!text-ink"
+                className="group relative flex items-baseline gap-1.5 cursor-pointer text-sm text-muted hover:text-ink transition-colors"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 h-px w-full bg-signal origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              </Link>
+            ))}
+          </nav>
 
-        {/* Navigation in the middle */}
-        <nav
-          className={`p-4 rounded-l-lg transition-all duration-300 ${navbar ? "w-screen pointer-events-auto" : "w-16 pointer-events-none"
-            } nav:w-48 ${!navbar && "bg-gray-100 dark:bg-gray-800"
-            } nav:bg-gray-100 nav:dark:bg-gray-800 nav:pointer-events-auto ${navbar ? "opacity-100" : "opacity-0 nav:opacity-100"
-            } ${!navbar && "hidden nav:flex"}`}
-        >
-          <div className="flex flex-col items-center space-y-8">
-            {/* Navigation items - always visible on desktop, controlled by navbar state below 1300px */}
-            <div
-              className={`flex flex-col items-center space-y-8 nav:opacity-100 nav:pointer-events-auto ${navbar ? "opacity-100 mt-8" : "opacity-0 pointer-events-none"
-                } transition-opacity duration-300`}
-            >
-              {NAV_ITEMS.map((item, idx) => {
-                return (
-                  <Link
-                    key={idx}
-                    to={item.page}
-                    className="text-gray-600 dark:text-gray-300 hover:text-primaryColor dark:hover:text-secondaryColor transition-colors cursor-pointer text-xl nav:text-base relative group"
-                    activeClass="!text-primaryColor dark:!text-secondaryColor after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primaryColor dark:after:bg-secondaryColor"
-                    spy={true}
-                    smooth={true}
-                    offset={-200}
-                    duration={500}
-                    spyThrottle={100}
-                    onClick={() => setNavbar(false)}
-                  >
-                    {item.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primaryColor dark:bg-secondaryColor transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </nav>
-
-        {/* Theme toggler at the bottom */}
-        <div
-          className={`p-4 flex justify-start w-full nav:justify-start transition-all duration-300 nav:w-48 ${!navbar && "bg-gray-100 dark:bg-gray-800"
-            } nav:bg-gray-100 nav:dark:bg-gray-800 ${navbar ? "opacity-100" : "opacity-0 nav:opacity-100"
-            } ${!navbar && "hidden nav:flex"}`}
-        >
-          {currentTheme === "dark" ? (
+          <div className="flex items-center gap-4">
             <button
-              onClick={() => setTheme("light")}
-              className="p-2 rounded bg-lightTheme transition-transform hover:translate-y-[-5px]"
+              onClick={toggleTheme}
+              aria-label={currentTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              title={currentTheme === "dark" ? "Light Mode" : "Dark Mode"}
+              className="grid place-items-center w-9 h-9 rounded-full bg-panel hover:text-signal transition-colors"
             >
-              <RiSunLine size={20} color="black" title={"Light Mode"} />
+              {currentTheme === "dark" ? <RiSunLine size={16} /> : <RiMoonFill size={15} />}
             </button>
-          ) : (
+
+            {/* Hamburger */}
             <button
-              onClick={() => setTheme("dark")}
-              className="p-2 rounded bg-primaryColor rounded-md transition-transform hover:translate-y-[-5px]"
+              onClick={() => setNavbar(!navbar)}
+              aria-label="Toggle menu"
+              aria-expanded={navbar}
+              className="md:hidden relative w-9 h-9 rounded-full bg-panel grid place-items-center"
             >
-              <RiMoonFill size={20} color="white" title={"Dark Mode"} />
+              <span className={`absolute h-px w-4 bg-ink transition-transform duration-300 ${navbar ? "rotate-45" : "-translate-y-1"}`} />
+              <span className={`absolute h-px w-4 bg-ink transition-transform duration-300 ${navbar ? "-rotate-45" : "translate-y-1"}`} />
             </button>
-          )}
+          </div>
         </div>
       </header>
+
+      {/* Mobile menu */}
+      <div
+        className={`fixed inset-0 z-40 md:hidden bg-paper transition-[opacity,visibility] duration-300 ${
+          navbar ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        <nav className="h-full flex flex-col justify-center px-6 gap-2">
+          {NAV_ITEMS.map((item, idx) => (
+            <Link
+              key={item.page}
+              to={item.page}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              onClick={() => setNavbar(false)}
+              style={{ transitionDelay: navbar ? `${120 + idx * 70}ms` : "0ms" }}
+              className={`flex items-baseline gap-4 cursor-pointer border-b border-line/10 py-4 transition-all duration-500 ${
+                navbar ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+            >
+              <span className="font-display font-black uppercase text-[clamp(2.5rem,12vw,4rem)] leading-none">
+                {item.label}
+              </span>
+            </Link>
+          ))}
+        </nav>
+      </div>
     </>
   );
 };

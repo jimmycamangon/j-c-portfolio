@@ -1,10 +1,12 @@
 // filepath: d:\JimFiles\j-c-portfolio\j-c-portfolio\app\layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Big_Shoulders_Display, Schibsted_Grotesk, Martian_Mono } from 'next/font/google';
 import ClientWrapper from './components/ClientWrapper';
 
-const inter = Inter({ subsets: ['latin'] });
+const display = Big_Shoulders_Display({ subsets: ['latin'], weight: ['500', '700', '900'], variable: '--font-display' });
+const body = Schibsted_Grotesk({ subsets: ['latin'], variable: '--font-body', adjustFontFallback: false });
+const mono = Martian_Mono({ subsets: ['latin'], weight: ['300', '400', '500'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
     title: 'Jimmy Camangon | .NET Developer',
@@ -34,10 +36,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable} ${mono.variable}`}>
             <head>
-                {/* Favicon */}
-                <link rel="icon" href="/j-c-logo-v2.png" />
             </head>
             <body>
                 <ClientWrapper>

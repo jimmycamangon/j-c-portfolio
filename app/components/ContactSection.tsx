@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { BiLogoGmail, BiLogoLinkedinSquare, BiLogoGithub } from "react-icons/bi";
 import Link from "next/link";
+import SectionHeader from "./SectionHeader";
 
 const contacts = [
   {
@@ -28,65 +29,59 @@ const contacts = [
 ];
 
 const ContactSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   return (
-    <motion.section
-      id="contact"
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5 }}
-      className="flex flex-col py-24 md:py-32"
-    >
-      <h1 className="text-left font-bold text-3xl text-gray-900 dark:text-white mb-3">
-        Contact
-      </h1>
-      <div className="w-6 h-0.5 bg-primaryColor mb-12 rounded-full" />
+    <section id="contact" className="py-24 md:py-32">
+      <SectionHeader index="04" title="Contact" />
 
-      <p className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-        Collab? Sure. Need code? Done.
-      </p>
-      <p className="text-base text-description-light dark:text-description-dark mb-10">
-        I&apos;m all in — sleep is optional.
-      </p>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7 }}
+        className="mb-12"
+      >
+        <p className="font-display font-black uppercase leading-[0.9] text-4xl md:text-6xl">
+          Collab? Sure.<br />
+          <span className="text-signal">Need code? Done.</span>
+        </p>
+      </motion.div>
 
-      <div className="w-full h-px bg-widthGray dark:bg-grayColor/30 mb-10" />
-
-      <div className="flex flex-col gap-3">
+      <div className="border-t border-line/10">
         {contacts.map((contact, idx) => {
           const Icon = contact.icon;
           return (
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, x: -16 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.1 + idx * 0.1 }}
+              key={contact.label}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
             >
               <Link
                 href={contact.href}
                 target={contact.external ? "_blank" : undefined}
                 rel={contact.external ? "noopener noreferrer" : undefined}
-                className="group flex items-center gap-4 p-4 rounded-xl border border-widthGray dark:border-grayColor/30 hover:border-primaryColor dark:hover:border-secondaryColor transition-all duration-200 hover:shadow-md"
+                className="group relative grid grid-cols-[auto_1fr_auto] md:grid-cols-[8rem_1fr_auto] items-center gap-4 md:gap-8 py-6 border-b border-line/10 overflow-hidden"
               >
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primaryColor/10 dark:bg-secondaryColor/10 text-primaryColor dark:text-secondaryColor shrink-0 group-hover:bg-primaryColor group-hover:text-whiteColor dark:group-hover:bg-secondaryColor dark:group-hover:text-textDark transition-all duration-200">
-                  <Icon className="text-xl" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-primaryColor dark:text-secondaryColor">
-                    {contact.label}
-                  </span>
-                  <span className="text-base text-description-light dark:text-description-dark group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-200">
-                    {contact.value}
-                  </span>
-                </div>
+                {/* Fill sweep */}
+                <span className="absolute inset-0 bg-signal origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)]" />
+
+                <span className="relative label group-hover:!text-paper transition-colors inline-flex items-center gap-2 pl-1">
+                  <Icon className="text-base" />
+                  <span className="hidden sm:inline">{contact.label}</span>
+                </span>
+                <span className="relative font-display font-bold uppercase text-xl sm:text-3xl md:text-4xl leading-none tracking-tight truncate group-hover:text-paper transition-colors">
+                  {contact.value}
+                </span>
+                <span className="relative font-display text-3xl md:text-5xl leading-none pr-1 group-hover:text-paper group-hover:rotate-45 transition-all duration-500">
+                  ↗
+                </span>
               </Link>
             </motion.div>
           );
         })}
       </div>
-    </motion.section>
+    </section>
   );
 };
 

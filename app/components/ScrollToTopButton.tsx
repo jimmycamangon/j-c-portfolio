@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { FaArrowUp } from "react-icons/fa";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
-    if (window.pageYOffset > 50) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
+    setIsVisible(window.scrollY > 600);
   };
 
   const scrollToTop = () => {
@@ -28,13 +23,14 @@ const ScrollToTopButton = () => {
 
   return (
     <button
-      className={`${
-        isVisible ? "block" : "hidden"
-      } fixed bottom-4 right-4 p-3 rounded-full bg-primaryColor text-whiteColor dark:bg-lightTheme dark:text-textDark shadow-md focus:outline-none transition-transform hover:translate-y-[-5px]`}
+      aria-label="Back to top"
+      className={`fixed bottom-5 right-5 grid place-items-center w-11 h-11 rounded-full bg-ink text-paper font-mono text-sm hover:bg-signal transition-all duration-300 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+      }`}
       onClick={scrollToTop}
       style={{ zIndex: 100 }}
     >
-      <FaArrowUp className="text-whiteColor dark:text-textDark" />
+      ↑
     </button>
   );
 };
