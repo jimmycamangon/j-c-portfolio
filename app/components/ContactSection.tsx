@@ -33,53 +33,52 @@ const ContactSection = () => {
     <section id="contact" className="py-24 md:py-32">
       <SectionHeader index="04" title="Contact" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7 }}
-        className="mb-12"
-      >
-        <p className="font-display font-black uppercase leading-[0.9] text-4xl md:text-6xl">
+      <div className="grid md:grid-cols-12 gap-10 md:gap-8">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="md:col-span-5 text-2xl md:text-3xl font-bold leading-snug"
+        >
           Collab? Sure.<br />
           <span className="text-signal">Need code? Done.</span>
-        </p>
-      </motion.div>
+        </motion.p>
 
-      <div className="border-t border-line/10">
-        {contacts.map((contact, idx) => {
-          const Icon = contact.icon;
-          return (
-            <motion.div
-              key={contact.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
-            >
-              <Link
-                href={contact.href}
-                target={contact.external ? "_blank" : undefined}
-                rel={contact.external ? "noopener noreferrer" : undefined}
-                className="group relative grid grid-cols-[auto_1fr_auto] md:grid-cols-[8rem_1fr_auto] items-center gap-4 md:gap-8 py-6 border-b border-line/10 overflow-hidden"
+        <ul className="md:col-span-7 border-t border-line/10">
+          {contacts.map((contact, idx) => {
+            const Icon = contact.icon;
+            return (
+              <motion.li
+                key={contact.label}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
               >
-                {/* Fill sweep */}
-                <span className="absolute inset-0 bg-signal origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)]" />
-
-                <span className="relative label group-hover:!text-paper transition-colors inline-flex items-center gap-2 pl-1">
-                  <Icon className="text-base" />
-                  <span className="hidden sm:inline">{contact.label}</span>
-                </span>
-                <span className="relative font-display font-bold uppercase text-xl sm:text-3xl md:text-4xl leading-none tracking-tight truncate group-hover:text-paper transition-colors">
-                  {contact.value}
-                </span>
-                <span className="relative font-display text-3xl md:text-5xl leading-none pr-1 group-hover:text-paper group-hover:rotate-45 transition-all duration-500">
-                  ↗
-                </span>
-              </Link>
-            </motion.div>
-          );
-        })}
+                <Link
+                  href={contact.href}
+                  target={contact.external ? "_blank" : undefined}
+                  rel={contact.external ? "noopener noreferrer" : undefined}
+                  className="group flex items-center gap-4 py-4 border-b border-line/10"
+                >
+                  <span className="grid place-items-center w-10 h-10 rounded-full bg-panel text-muted shrink-0 group-hover:bg-signal/10 group-hover:text-signal transition-colors">
+                    <Icon className="text-lg" />
+                  </span>
+                  <span className="flex flex-col min-w-0">
+                    <span className="text-xs text-muted">{contact.label}</span>
+                    <span className="font-medium truncate group-hover:text-signal transition-colors">
+                      {contact.value}
+                    </span>
+                  </span>
+                  <span className="ml-auto text-muted group-hover:text-signal group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all">
+                    ↗
+                  </span>
+                </Link>
+              </motion.li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

@@ -23,7 +23,7 @@ const HeroSection = () => {
 
       <div className="h-px bg-line/15 mt-12 origin-left animate-draw" style={d(600)} />
 
-      <div className="mt-8 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+      <div className="mt-8 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
         <div>
           <p className="font-display font-bold uppercase leading-none tracking-tight text-3xl sm:text-4xl md:text-5xl animate-fade" style={d(750)}>
             <span className="text-signal">Software Developer</span>

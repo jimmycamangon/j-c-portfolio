@@ -35,11 +35,22 @@ const IntroScreen = ({ onFinish }: { onFinish: () => void }) => {
         <div className={`intro-container fixed inset-0 z-[300] bg-paper text-ink flex flex-col justify-end gap-10 p-6 sm:p-10 ${leaving ? "leaving" : ""}`}>
 
             <h1 className="intro-text font-display font-black uppercase leading-[0.85] tracking-tight">
-                {name.split("").map((char, i) => (
-                    <span key={i} className="intro-letter" style={{ animationDelay: `${i * 45}ms` }}>
-                        {char === " " ? " " : char}
-                    </span>
-                ))}
+                {/* Each word stays whole so a wrap never splits it mid-word */}
+                {name.split(" ").map((word, w, words) => {
+                    const offset = words.slice(0, w).join(" ").length + (w > 0 ? 1 : 0);
+                    return (
+                        <React.Fragment key={word}>
+                            {w > 0 && " "}
+                            <span className="inline-block whitespace-nowrap">
+                                {word.split("").map((char, i) => (
+                                    <span key={i} className="intro-letter" style={{ animationDelay: `${(offset + i) * 45}ms` }}>
+                                        {char}
+                                    </span>
+                                ))}
+                            </span>
+                        </React.Fragment>
+                    );
+                })}
             </h1>
 
             <div>

@@ -20,9 +20,9 @@ module.exports = {
         85: '0.85',
       },
       fontFamily: {
-        display: ['var(--font-display)', 'Impact', 'sans-serif'],
-        sans: ['var(--font-body)', 'ui-sans-serif', 'sans-serif'],
-        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        display: ['Satoshi', 'ui-sans-serif', 'sans-serif'],
+        sans: ['Satoshi', 'ui-sans-serif', 'sans-serif'],
+        mono: ['Satoshi', 'ui-sans-serif', 'sans-serif'],
       },
       colors: {
         paper: token('paper'),
